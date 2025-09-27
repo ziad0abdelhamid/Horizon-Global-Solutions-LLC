@@ -1,20 +1,23 @@
-import './globals.css'
-import Navbar from '@/components/Navbar'
+import "./globals.css";
+import type { Metadata } from "next";
+import Navbar from "@/components/Navbar";
+export const metadata: Metadata = {
+  title: "Horizon Global Solutions LLC",
+  description: "Professional web, software, data, and consulting services",
+};
 
-
-export const metadata = {
-title: 'Horizon Global Solutions',
-description: 'Full-service business & tech solutions for startups and enterprises',
-}
-
-
-export default function RootLayout({ children }) {
-return (
-<html lang="en">
-<body className="bg-white text-slate-900 antialiased">
-<Navbar />
-<main className="pt-20">{children}</main>
-</body>
-</html>
-)
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className="antialiased">
+        <Navbar />
+        {/* 👇 This pushes all content below the sticky navbar */}
+        <div className="pt-24">{children}</div>
+      </body>
+    </html>
+  );
 }

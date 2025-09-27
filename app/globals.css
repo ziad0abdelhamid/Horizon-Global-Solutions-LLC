@@ -1,30 +1,75 @@
+/* globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+
+}
+
+/* Tailwind base styles */
 @import "tailwindcss";
-@import "tailwindcss/preflight";
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* --- Global styles --- */
+button {
+  @apply transition-colors duration-200 ease-in-out;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::selection {
+  @apply bg-indigo-500 text-white;
 }
 
-html, body {
-height: 100%;
+/* --- Hero Section --- */
+.hero {
+  @apply relative overflow-hidden text-center text-white py-28 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500;
 }
 
+.hero h1 {
+  @apply text-5xl sm:text-6xl font-extrabold mb-4;
+}
 
-/* small utilities */
-.container { @apply max-w-6xl mx-auto px-4; }
+.hero p {
+  @apply text-lg sm:text-xl max-w-2xl mx-auto;
+}
+
+.hero button {
+  @apply mt-6 px-8 py-3 bg-white text-indigo-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100;
+}
+
+/* --- Card Component --- */
+.card {
+  @apply bg-white rounded-2xl shadow-xl p-6 transition-transform transform hover:-translate-y-2 hover:shadow-2xl;
+}
+
+.card img {
+  @apply rounded-xl mb-4;
+}
+
+.card h3 {
+  @apply text-xl font-bold mb-2;
+}
+
+.card p {
+  @apply text-gray-700;
+}
+
+.card button {
+  @apply mt-4 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-500;
+}
+
+/* globals.css */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #1a202c; /* Dark background */
+  color: #e2e8f0; /* Light text */
+}
+
+a {
+  text-decoration: none;
+}

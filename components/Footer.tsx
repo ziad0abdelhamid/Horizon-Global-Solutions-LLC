@@ -1,20 +1,15 @@
-export default function Footer(){
-return (
-<footer className="mt-20 border-t py-8">
-<div className="container flex flex-col md:flex-row justify-between items-center gap-4">
-<div className="flex items-center gap-3">
-<img src="/logo.svg" alt="logo" className="h-8 w-8" />
-<div>
-<div className="font-semibold">Horizon Global Solutions LLC</div>
-<div className="text-sm text-slate-600">© {new Date().getFullYear()} All rights reserved.</div>
-</div>
-</div>
-<nav className="text-sm">
-<a href="#" className="mr-4">Privacy</a>
-<a href="#" className="mr-4">Terms</a>
-<a href="#">Contact</a>
-</nav>
-</div>
-</footer>
-)
+// src/components/Footer.tsx
+export default function Footer() {
+  return (
+    <footer className="bg-slate-900 text-gray-300 py-10">
+      <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p>&copy; {new Date().getFullYear()} Horizon Global Solutions LLC</p>
+        <nav className="flex gap-6 text-sm">
+          <a href="#services" className="hover:text-white">Services</a>
+          <a href="#about" className="hover:text-white">About</a>
+          <a href="#contact" className="hover:text-white">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  );
 }
