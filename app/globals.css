@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tailwindcss/preflight";
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -19,8 +21,10 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html, body {
+height: 100%;
 }
+
+
+/* small utilities */
+.container { @apply max-w-6xl mx-auto px-4; }
