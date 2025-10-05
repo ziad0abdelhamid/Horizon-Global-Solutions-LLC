@@ -1,20 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import Prism from "@/components/Prism";
-import HeroWithNavbar from "@/components/Navbar"; // Use your existing navbar
+import HeroWithNavbar from "@/components/Navbar"; // Navbar
 import { FaGlobe } from "react-icons/fa";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
-  { label: "Projects", href: "/projects" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/#contact" },
-];
+import LiquidChrome from "@/components/LiquidChrome";
 
 const teamMembers = [
   {
@@ -83,22 +75,34 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* Mission & Vision Section */}
+      {/* Mission & Vision Section with Gold LiquidChrome */}
       <motion.section
         initial="hidden"
         whileInView="visible"
         variants={fadeInUp}
         viewport={{ once: true, amount: 0.4 }}
-        className="relative snap-start h-screen bg-white flex flex-col justify-center items-center px-6 md:px-16 lg:px-32 text-center"
+        className="relative snap-start h-screen flex flex-col justify-center items-center px-6 md:px-16 lg:px-32 text-center overflow-hidden"
       >
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Our Mission</h2>
-          <p className="text-gray-700 text-lg leading-relaxed mb-16">
+        {/* Gold LiquidChrome Background */}
+        <LiquidChrome
+          baseColor={[0.9, 0.53, 0.004]} // gold tone
+          speed={1}
+          amplitude={0.6}
+          interactive={true}
+          className="absolute inset-0 z-0"
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-5xl mx-auto text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Mission</h2>
+          <p className="text-lg md:text-xl leading-relaxed mb-16">
             To deliver innovative, technology-driven solutions that help businesses adapt and thrive in an ever-changing digital world — blending creativity, precision, and strategic thinking to achieve lasting impact.
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Our Vision</h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Vision</h2>
+          <p className="text-lg md:text-xl leading-relaxed">
             To be a trusted global partner in technology and strategy — shaping the future of business through sustainable innovation, collaboration, and excellence.
           </p>
         </div>

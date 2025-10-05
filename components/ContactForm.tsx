@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -37,8 +38,16 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#f7f5ef] font-['Sono']">
-      <div className="max-w-xl mx-auto px-6">
+    <section id="contact" className="py-24 bg-[#f7f5ef] font-['Sono'] relative overflow-hidden">
+      {/* Animated background frame */}
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="absolute inset-0 border-4 border-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-3xl pointer-events-none animate-pulse-slow"
+      />
+
+      <div className="relative max-w-xl mx-auto px-6 z-10">
         <h2 className="text-4xl font-extrabold text-center text-[#D4AF37] mb-4">
           Contact Us
         </h2>
@@ -46,16 +55,19 @@ export default function ContactForm() {
           Let’s build something great together. Reach out to our team and we’ll get back to you shortly.
         </p>
 
-        <form
+        <motion.form
           onSubmit={handleSubmit}
-          className="bg-white shadow-lg rounded-2xl p-10 space-y-5"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-white shadow-2xl rounded-3xl p-10 space-y-5 relative z-10 border border-gray-200"
         >
           <input
             type="text"
             placeholder="Your Name"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] placeholder-black placeholder-opacity-80 text-black"
             required
           />
           <input
@@ -63,34 +75,46 @@ export default function ContactForm() {
             placeholder="Your Email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] placeholder-black placeholder-opacity-80 text-black"
             required
           />
           <textarea
             placeholder="Your Message"
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] placeholder-black placeholder-opacity-80 text-black"
             rows={5}
             required
           />
 
           <button
             type="submit"
-            className="w-full bg-[#D4AF37] text-white py-3 rounded-lg font-semibold hover:bg-[#b8912f] transition"
+            className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white py-3 rounded-lg font-semibold shadow-xl hover:scale-105 transition-transform cursor-pointer"
             disabled={status === "loading"}
           >
             {status === "loading" ? "Sending..." : "Send Message"}
           </button>
 
           {status === "success" && (
-            <p className="text-green-600 text-center mt-4">Message sent successfully!</p>
+            <p className="text-green-600 text-center mt-4 font-medium">
+              Message sent successfully!
+            </p>
           )}
           {status === "error" && (
-            <p className="text-red-600 text-center mt-4">{errorMsg}</p>
+            <p className="text-red-600 text-center mt-4 font-medium">{errorMsg}</p>
           )}
-        </form>
+        </motion.form>
       </div>
+
+      <style jsx>{`
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.3; transform: scale(0.98); }
+          50% { opacity: 0.6; transform: scale(1.02); }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 }

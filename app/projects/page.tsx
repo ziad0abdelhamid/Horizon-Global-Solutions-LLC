@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { projects , Project } from "@/app/data/projects";
+import { projects, Project } from "@/app/data/projects";
 import HeroWithNavbar from "@/components/Navbar"; // ✅ Scroll-aware navbar
 
 const categories = ["All", "Web Development", "Design", "Data Analytics", "Marketing", "Software"];
@@ -19,7 +19,7 @@ export default function ProjectsPage() {
 
   return (
     <div id="scroll-container" className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth">
-      {/* Navbar */}
+      {/* Navbar only */}
       <HeroWithNavbar />
 
       <main className="bg-[#faf8f4] min-h-screen font-['Sono'] py-24 px-6">
