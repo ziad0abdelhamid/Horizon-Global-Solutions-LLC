@@ -1,35 +1,41 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Prism from "./Prism";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
   { label: "Services", href: "#services" },
   { label: "Projects", href: "/projects" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "#contact" },
-
 ];
 
 export default function HeroWithNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-useEffect(() => {
-  const container = document.getElementById("scroll-container");
-  if (!container) return;
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
-  const handleScroll = () => setScrolled(container.scrollTop > 0);
+  useEffect(() => {
+    if (!isHome) {
+      setScrolled(true); // always small navbar on non-home pages
+      return;
+    }
 
-  container.addEventListener("scroll", handleScroll);
-  handleScroll(); // run once on load
-  return () => container.removeEventListener("scroll", handleScroll);
-}, []);
+    const container = document.getElementById("scroll-container");
+    if (!container) return;
 
+    const handleScroll = () => setScrolled(container.scrollTop > 0);
+    container.addEventListener("scroll", handleScroll);
+    handleScroll(); // initial check
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [isHome]);
 
   return (
     <section className="relative h-screen overflow-hidden font-sans">
@@ -40,22 +46,22 @@ useEffect(() => {
         }`}
       >
         <div className="max-w-screen-xl mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link href="#" className="transition-all duration-300">
-          {scrolled ? (
-            <span className="text-xl md:text-2xl font-bold text-gray-800">
-              Horizon Global Solutions
-            </span>
-          ) : (
-            <Image
-              src="/logo-2.png" // Your logo path
-              alt="Horizon Global Solutions"
-              width={400}
-              height={100}
-              className="transition-all duration-300"
-            />
-          )}
-        </Link>
+          {/* Logo */}
+          <Link href="/">
+            {scrolled ? (
+              <span className="text-xl md:text-2xl font-bold text-gray-800">
+                Horizon Global Solutions
+              </span>
+            ) : (
+              <Image
+                src="/logo-2.png"
+                alt="Horizon Global Solutions"
+                width={400}
+                height={100}
+                className="transition-all duration-300"
+              />
+            )}
+          </Link>
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-8">
@@ -107,7 +113,7 @@ useEffect(() => {
       {/* Prism Background */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <Prism
-          colorStops={scrolled ? ["#000000", "#FFD700", "#B8860B"] : ["#000000", "#FFD700", "#B8860B"]}
+          colorStops={["#000000", "#FFD700", "#B8860B"]}
           blend={0.5}
           amplitude={1.0}
           speed={0.5}

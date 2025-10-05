@@ -1,84 +1,95 @@
-// src/components/Contact.tsx
+// src/components/ContactForm.tsx
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 
-export default function Contact() {
+export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(data.error || "Something went wrong");
+        setStatus("error");
+        return;
+      }
+
+      setForm({ name: "", email: "", message: "" });
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setErrorMsg("Something went wrong");
+      setStatus("error");
+    }
   };
 
   return (
-    <section
-      id="contact"
-      className="relative py-32 bg-[#faf8f4] text-black font-['Sono'] overflow-hidden"
-    >
-      {/* Decorative Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fff7e8]/60 to-[#faf8f4]" />
+    <section id="contact" className="py-24 bg-[#f7f5ef] font-['Sono']">
+      <div className="max-w-xl mx-auto px-6">
+        <h2 className="text-4xl font-extrabold text-center text-[#D4AF37] mb-4">
+          Contact Us
+        </h2>
+        <p className="text-center text-gray-600 mb-10">
+          Let’s build something great together. Reach out to our team and we’ll get back to you shortly.
+        </p>
 
-      <div className="relative container mx-auto px-6 z-10">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#D4AF37] drop-shadow-lg">
-            Get in Touch
-          </h2>
-          <p className="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">
-            Let’s build something great together. Reach out and we’ll get back
-            to you as soon as possible.
-          </p>
-          <div className="w-16 h-1 bg-[#D4AF37] mx-auto mt-6 rounded-full"></div>
-        </div>
-
-        {/* Contact Form */}
-        <motion.form
+        <form
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="relative bg-white/90 backdrop-blur-md shadow-xl border border-[#e6d8b5] rounded-2xl p-10 max-w-2xl mx-auto"
+          className="bg-white shadow-lg rounded-2xl p-10 space-y-5"
         >
-          <div className="space-y-5">
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-[#e6d8b5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/70 transition"
-              required
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-[#e6d8b5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/70 transition"
-              required
-            />
-            <textarea
-              placeholder="Your Message"
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-[#e6d8b5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/70 transition resize-none"
-              rows={5}
-              required
-            />
-          </div>
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+            required
+          />
+          <textarea
+            placeholder="Your Message"
+            value={form.message}
+            onChange={(e) => setForm({ ...form, message: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+            rows={5}
+            required
+          />
 
-          {/* Submit Button */}
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+          <button
             type="submit"
-            className="mt-8 w-full bg-gradient-to-r from-[#D4AF37] to-[#b8922a] text-white py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+            className="w-full bg-[#D4AF37] text-white py-3 rounded-lg font-semibold hover:bg-[#b8912f] transition"
+            disabled={status === "loading"}
           >
-            Send Message
-          </motion.button>
-        </motion.form>
+            {status === "loading" ? "Sending..." : "Send Message"}
+          </button>
+
+          {status === "success" && (
+            <p className="text-green-600 text-center mt-4">Message sent successfully!</p>
+          )}
+          {status === "error" && (
+            <p className="text-red-600 text-center mt-4">{errorMsg}</p>
+          )}
+        </form>
       </div>
     </section>
   );

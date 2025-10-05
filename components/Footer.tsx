@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Mail, MapPin, Phone, Linkedin, Facebook, Twitter } from "lucide-react";
 
 export default function Footer() {
@@ -55,22 +56,34 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="/about" className="hover:text-[#D4AF37] transition-colors">
+              <Link
+                href="/about"
+                className="hover:text-[#D4AF37] transition-colors"
+              >
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#services" className="hover:text-[#D4AF37] transition-colors">
+              <a
+                href="#services"
+                className="hover:text-[#D4AF37] transition-colors"
+              >
                 Our Services
               </a>
             </li>
             <li>
-              <a href="/projects" className="hover:text-[#D4AF37] transition-colors">
+              <Link
+                href="/projects"
+                className="hover:text-[#D4AF37] transition-colors"
+              >
                 Projects
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="hover:text-[#D4AF37] transition-colors">
+              <a
+                href="#contact"
+                className="hover:text-[#D4AF37] transition-colors"
+              >
                 Contact
               </a>
             </li>
@@ -84,29 +97,41 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="#" className="hover:text-[#D4AF37] transition-colors">
+              <a
+                href="#"
+                className="hover:text-[#D4AF37] transition-colors"
+              >
                 Blog & Insights
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#D4AF37] transition-colors">
+              <a
+                href="#"
+                className="hover:text-[#D4AF37] transition-colors"
+              >
                 Case Studies
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#D4AF37] transition-colors">
+              <a
+                href="#"
+                className="hover:text-[#D4AF37] transition-colors"
+              >
                 White Papers
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#D4AF37] transition-colors">
+              <a
+                href="#"
+                className="hover:text-[#D4AF37] transition-colors"
+              >
                 Partner Program
               </a>
             </li>
           </ul>
         </div>
 
-        {/* Contact Info */}
+        {/* Contact Info & Newsletter */}
         <div>
           <h4 className="text-lg font-semibold text-[#D4AF37] mb-4">
             Get in Touch
