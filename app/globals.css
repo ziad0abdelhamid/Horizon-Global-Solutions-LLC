@@ -19,7 +19,7 @@ button {
 }
 
 ::selection {
-  @apply bg-indigo-500 text-white;
+  @apply bg-yellow-500 text-white;
 }
 
 /* --- Hero Section --- */

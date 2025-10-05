@@ -14,9 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <Navbar />
+        
         {/* 👇 This pushes all content below the sticky navbar */}
-        <div className="pt-24">{children}</div>
+        <div>{children}</div>
       </body>
     </html>
   );

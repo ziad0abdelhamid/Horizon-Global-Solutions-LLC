@@ -8,20 +8,28 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Home", href: "#" },
-  { label: "Services", href: "#properties" },
-  { label: "About Us", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Projects", href: "/projects" },
+  { label: "About Us", href: "/about" },
   { label: "Contact", href: "#contact" },
+
 ];
 
 export default function HeroWithNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+useEffect(() => {
+  const container = document.getElementById("scroll-container");
+  if (!container) return;
+
+  const handleScroll = () => setScrolled(container.scrollTop > 0);
+
+  container.addEventListener("scroll", handleScroll);
+  handleScroll(); // run once on load
+  return () => container.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   return (
     <section className="relative h-screen overflow-hidden font-sans">
