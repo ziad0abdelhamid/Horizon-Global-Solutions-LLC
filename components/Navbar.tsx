@@ -40,7 +40,6 @@ export default function HeroWithNavbar() {
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Function to handle section navigation
   const goToSection = (href: string) => {
     if (href.startsWith("#")) {
       if (isHome) {
@@ -59,7 +58,7 @@ export default function HeroWithNavbar() {
     <section className="relative font-sans">
       {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300 backdrop-blur-md ${
+        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 transition-all duration-300 ${
           scrolled || !isHome ? "bg-white/95 shadow-sm" : "bg-transparent"
         }`}
       >
@@ -67,7 +66,7 @@ export default function HeroWithNavbar() {
           {/* Logo */}
           <Link href="/">
             {scrolled || !isHome ? (
-              <span className="text-xl md:text-2xl font-bold text-gray-800">
+              <span className="text-xl sm:text-2xl font-bold text-gray-800">
                 Horizon Global Solutions
               </span>
             ) : (
@@ -76,13 +75,13 @@ export default function HeroWithNavbar() {
                 alt="Horizon Global Solutions"
                 width={400}
                 height={100}
-                className="transition-all duration-300"
+                className="transition-all duration-300 max-w-[300px] sm:max-w-[300px]"
               />
             )}
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-8">
+          <ul className="hidden md:flex space-x-6 lg:space-x-8">
             {navItems.map((item, index) => (
               <li key={index}>
                 <button
@@ -100,60 +99,78 @@ export default function HeroWithNavbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className={`md:hidden transition-colors ${
+            className={`md:hidden transition-colors z-50 ${
               scrolled || !isHome ? "text-gray-800" : "text-white"
             }`}
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setMenuOpen(true)}
             aria-label="Toggle menu"
           >
-            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+            <Menu size={28} />
           </button>
         </div>
+      </nav>
 
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <ul className="md:hidden flex flex-col items-center mt-4 space-y-4 bg-white/90 backdrop-blur-md py-4 rounded-b-lg shadow-lg transition-all">
+      {/* Fullscreen Mobile Menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center text-center transition-all">
+          {/* Close Button */}
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-6 right-6 text-white"
+            aria-label="Close menu"
+          >
+            <X size={36} />
+          </button>
+
+          {/* Menu Items */}
+          <ul className="space-y-8">
             {navItems.map((item, index) => (
               <li key={index}>
                 <button
                   onClick={() => goToSection(item.href)}
-                  className="text-gray-800 hover:text-yellow-600 font-medium text-lg transition-colors"
+                  className="text-white font-bold text-2xl hover:text-yellow-400 transition"
                 >
                   {item.label}
                 </button>
               </li>
             ))}
           </ul>
-        )}
-      </nav>
+        </div>
+      )}
 
       {/* Hero Section - only show on home page */}
       {isHome && (
-        <div className="relative h-screen overflow-hidden">
+        <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden flex items-center">
           <div className="absolute inset-0 z-0 w-full h-full">
             <Prism colorStops={["#000000", "#FFD700", "#B8860B"]} blend={0.5} amplitude={1.0} speed={0.5} />
             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
           </div>
 
-          <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-2xl animate-fadeInUp">
+          <div className="relative z-10 flex flex-col justify-center items-center text-center px-4 sm:px-6 max-w-3xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white drop-shadow-2xl animate-fadeInUp">
               Horizon Global Solutions
             </h1>
-            <p className="mt-6 text-lg text-gray-300 animate-fadeInUp delay-200">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-300 animate-fadeInUp delay-200">
               We help startups and enterprises thrive with cutting-edge digital solutions.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4 animate-fadeInUp delay-400">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-4 animate-fadeInUp delay-400 w-full">
               <a
                 href="#contact"
-                onClick={(e) => { e.preventDefault(); goToSection("#contact"); }}
-                className="px-8 py-3 rounded-full bg-yellow-400 text-white font-semibold shadow-lg hover:bg-yellow-600 transition transform hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault();
+                  goToSection("#contact");
+                }}
+                className="w-full sm:w-auto px-8 py-3 rounded-full bg-yellow-400 text-white font-semibold shadow-lg hover:bg-yellow-600 transition transform hover:scale-105 text-center"
               >
                 Get Started
               </a>
               <a
                 href="#services"
-                onClick={(e) => { e.preventDefault(); goToSection("#services"); }}
-                className="px-8 py-3 rounded-full border border-white text-white font-semibold hover:bg-white/10 transition transform hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault();
+                  goToSection("#services");
+                }}
+                className="w-full sm:w-auto px-8 py-3 rounded-full border border-white text-white font-semibold hover:bg-white/10 transition transform hover:scale-105 text-center"
               >
                 Explore Services
               </a>

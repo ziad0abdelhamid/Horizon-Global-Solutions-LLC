@@ -1,3 +1,4 @@
+import BackToTop from "@/components/BackToTop";
 import "./globals.css";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({
       <body className="antialiased">
         
         {/* 👇 This pushes all content below the sticky navbar */}
+        <BackToTop/>
         <div>{children}</div>
       </body>
     </html>
