@@ -10,37 +10,38 @@ import LiquidChrome from "@/components/LiquidChrome";
 
 const teamMembers = [
   {
-    name: "Sarah Johnson",
-    role: "CEO & Founder",
+    name: "Zeyad Abdelhamid",
+    role: "Founder, CEO & General Manager",
     description:
-      "Sarah leads Horizon Global Solutions with over a decade of experience in business strategy and technology integration. Her vision drives the company’s commitment to innovation and excellence.",
-    image: "/team1.jpg",
-    website: "https://linkedin.com/in/sarahjohnson",
+      "Zeyad leads Horizon Global Solutions LLC. with a visionary approach to strategic growth, innovation, and operational excellence. As the company’s founder and chief executive, he oversees all business divisions, ensuring seamless alignment between strategy, execution, and impact.",
+    image: "/zeyad.jpg",
+    website: "https://linkedin.com/in/zeyadabdelhamid",
   },
   {
-    name: "Michael Chen",
-    role: "Chief Technology Officer",
+    name: "Moustafa Hesham",
+    role: "Chief Technology Officer (CTO)",
     description:
-      "Michael oversees product development and software architecture, ensuring our solutions are scalable, secure, and cutting-edge. He’s passionate about AI and sustainable tech.",
-    image: "/team2.jpg",
-    website: "https://github.com/michaelchen",
+      "Moustafa heads the technology division, guiding product development, software engineering, and systems architecture. His expertise in coding and AI-driven innovation ensures that every solution delivered is both scalable and future-ready.",
+    image: "/moustafa.jpg",
+    website: "https://github.com/moustafahesham",
   },
   {
-    name: "Emily Davis",
-    role: "Lead Designer",
+    name: "Mohamed El-Bakry",
+    role: "Marketing & Client Acquisition Director",
     description:
-      "Emily creates intuitive and engaging designs for digital platforms, blending aesthetics with user-centric functionality to deliver outstanding experiences.",
-    image: "/team3.jpg",
-    website: "https://dribbble.com/emilydavis",
+      "Mohamed drives the company’s marketing strategy and oversees client acquisition initiatives. With a deep understanding of market trends and audience engagement, he connects America One Inc. with partners and customers worldwide.",
+    image: "/dito.jpg",
+    website: "",
   },
   {
-    name: "Ahmed Ali",
-    role: "Operations Manager",
+    name: "Mohamed El Sharkawy",
+    role: "Lead Data Analyst",
     description:
-      "Ahmed manages operations and logistics, optimizing workflows and maintaining project efficiency from start to finish.",
-    image: "/team4.jpg",
+      "Mohamed specializes in data analytics and performance insights, transforming complex datasets into actionable intelligence. His analytical acumen supports strategic decision-making across all operational levels of the company.",
+    image: "/sharko.jpg",
   },
 ];
+
 
 export default function AboutPage() {
   const fadeInUp: Variants = {

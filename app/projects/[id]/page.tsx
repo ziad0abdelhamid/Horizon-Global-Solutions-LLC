@@ -4,13 +4,20 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects } from "@/app/data/projects";
 import HeroWithNavbar from "@/components/Navbar"; // ✅ Scroll-aware navbar
+import React from "react";
 
 interface Params {
   params: { id: string };
 }
 
-export default function ProjectDetail({ params }: Params) {
-  const project = projects.find((p) => p.id === params.id);
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export default function ProjectDetail({ params }: Props) {
+  const { id } = React.use(params); // ✅ unwrap Promise correctly
+
+  const project = projects.find((p) => p.id === id);
 
   if (!project) return notFound();
 
