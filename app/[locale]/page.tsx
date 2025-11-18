@@ -42,7 +42,6 @@ export default function Home() {
           <div className="flex-1">
             <Contact />
           </div>
-
           {/* Footer */}
           <Footer />
         </div>
