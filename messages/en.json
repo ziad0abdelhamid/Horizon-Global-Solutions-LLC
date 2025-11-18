@@ -1,0 +1,67 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "projects": "Projects",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Horizon Global Solutions",
+    "subtitle": "Empowering Innovation Worldwide",
+    "description": "Delivering cutting-edge technology solutions that drive business growth and digital transformation across the globe."
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Empowering your business through innovative technology, data-driven decisions, and exceptional design.",
+    "webDevelopment": {
+      "title": "Web Development",
+      "description": "Custom-built websites optimized for performance, security, and user experience."
+    },
+    "dataAnalytics": {
+      "title": "Data Analytics", 
+      "description": "We turn complex data into clear insights that drive smart business decisions."
+    },
+    "financialAdvisory": {
+      "title": "Financial Advisory",
+      "description": "Strategic financial guidance to help you grow, invest, and scale confidently."
+    },
+    "softwareProgramming": {
+      "title": "Software Programming",
+      "description": "Reliable, scalable, and modern software tailored precisely to your needs."
+    },
+    "webDesign": {
+      "title": "Web & Logo Design",
+      "description": "Elegant digital identities and brand visuals that leave a lasting impression."
+    },
+    "marketing": {
+      "title": "Marketing Solutions",
+      "description": "Creative digital campaigns designed to engage and convert your audience."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with us today",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "namePlaceholder": "Enter your name",
+    "emailPlaceholder": "Enter your email",
+    "messagePlaceholder": "Enter your message"
+  },
+  "footer": {
+    "copyright": "© 2024 Horizon Global Solutions. All rights reserved.",
+    "followUs": "Follow Us"
+  },
+  "projects": {
+    "title": "Our Projects",
+    "subtitle": "Discover our latest work and innovations",
+    "viewProject": "View Project",
+    "backToProjects": "Back to Projects"
+  },
+  "about": {
+    "title": "About Horizon Global Solutions",
+    "subtitle": "We are a multidisciplinary team dedicated to building digital ecosystems that empower innovation, efficiency, and sustainable growth worldwide."
+  }
+}

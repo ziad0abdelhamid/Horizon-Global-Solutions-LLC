@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from 'next-intl';
 import Prism from "@/components/Prism";
 import HeroWithNavbar from "@/components/Navbar"; // Navbar
 import { FaGlobe } from "react-icons/fa";
@@ -44,6 +45,8 @@ const teamMembers = [
 
 
 export default function AboutPage() {
+  const t = useTranslations('about');
+  
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } },
@@ -69,9 +72,9 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="relative z-10 max-w-4xl px-6"
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6">About Horizon Global Solutions</h1>
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-6">{t('title')}</h1>
           <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
-            We are a multidisciplinary team dedicated to building digital ecosystems that empower innovation, efficiency, and sustainable growth worldwide.
+            {t('subtitle')}
           </p>
         </motion.div>
       </section>

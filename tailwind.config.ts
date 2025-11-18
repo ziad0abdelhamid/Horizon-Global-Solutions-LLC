@@ -8,5 +8,18 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    // Custom RTL plugin
+    function ({ addUtilities }: { addUtilities: (utilities: Record<string, any>) => void }) {
+      const newUtilities = {
+        '.rtl': {
+          direction: 'rtl',
+        },
+        '.ltr': {
+          direction: 'ltr',
+        },
+      }
+      addUtilities(newUtilities)
+    },
+  ],
 };

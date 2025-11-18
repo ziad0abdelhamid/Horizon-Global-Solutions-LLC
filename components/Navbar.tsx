@@ -2,26 +2,30 @@
 
 import { useState, useEffect } from "react";
 import Prism from "./Prism";
-import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "/projects" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "#contact" },
-];
+import { useTranslations, useLocale } from 'next-intl';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function HeroWithNavbar() {
+  const t = useTranslations();
+  const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
-  const isHome = pathname === "/";
+  const isHome = pathname === `/${locale}` || pathname === '/';
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Navigation items with translations
+  const navItems = [
+    { label: t('navigation.home'), href: "/" },
+    { label: t('navigation.services'), href: "#services" },
+    { label: t('navigation.projects'), href: "/projects" },
+    { label: t('navigation.about'), href: "/about" },
+    { label: t('navigation.contact'), href: "#contact" },
+  ];
 
   useEffect(() => {
     const container = document.getElementById("scroll-container") || window;
@@ -46,7 +50,7 @@ export default function HeroWithNavbar() {
         const el = document.querySelector(href);
         el?.scrollIntoView({ behavior: "smooth" });
       } else {
-        router.push("/" + href);
+        router.push(`/${href}`);
       }
     } else {
       router.push(href);
@@ -80,33 +84,48 @@ export default function HeroWithNavbar() {
             )}
           </Link>
 
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-6 lg:space-x-8">
-            {navItems.map((item, index) => (
-              <li key={index}>
-                <button
-                  onClick={() => goToSection(item.href)}
-                  className={`relative inline-block font-medium transition-all duration-300
-                    ${scrolled || !isHome ? "text-gray-800" : "text-white"}
-                    hover:scale-105 hover:drop-shadow-lg
-                    after:content-[''] after:block after:h-[2px] after:w-0 after:bg-yellow-600 after:transition-all after:duration-300 hover:after:w-full cursor-pointer`}
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+          {/* Desktop Menu & Language Switcher */}
+          <div className="hidden md:flex items-center" style={{ gap: locale === 'ar' ? '2rem' : '2rem' }}>
+            <ul className="flex" style={{ gap: locale === 'ar' ? '2rem' : '2rem' }}>
+              {navItems.map((item, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => goToSection(item.href)}
+                    className={`relative inline-block font-medium transition-all duration-300
+                      ${scrolled || !isHome ? "text-gray-800" : "text-white"}
+                      hover:scale-105 hover:drop-shadow-lg
+                      after:content-[''] after:block after:h-[2px] after:w-0 after:bg-yellow-600 after:transition-all after:duration-300 hover:after:w-full cursor-pointer`}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            
+            {/* Language Switcher for Desktop */}
+            <div>
+              <LanguageSwitcher />
+            </div>
+          </div>
 
-          {/* Mobile Hamburger */}
-          <button
-            className={`md:hidden transition-colors z-50 ${
-              scrolled || !isHome ? "text-gray-800" : "text-white"
-            }`}
-            onClick={() => setMenuOpen(true)}
-            aria-label="Toggle menu"
-          >
-            <Menu size={28} />
-          </button>
+          {/* Mobile Menu: Language Switcher + Hamburger */}
+          <div className="md:hidden flex items-center" style={{ gap: '0.75rem' }}>
+            {/* Language Switcher for Mobile */}
+            <div>
+              <LanguageSwitcher />
+            </div>
+            
+            {/* Mobile Hamburger */}
+            <button
+              className={`transition-colors z-50 ${
+                scrolled || !isHome ? "text-gray-800" : "text-white"
+              }`}
+              onClick={() => setMenuOpen(true)}
+              aria-label="Toggle menu"
+            >
+              <Menu size={28} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -148,10 +167,10 @@ export default function HeroWithNavbar() {
 
           <div className="relative z-10 flex flex-col justify-center items-center text-center px-4 sm:px-6 max-w-3xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white drop-shadow-2xl animate-fadeInUp">
-              Horizon Global Solutions
+              {t('hero.title')}
             </h1>
             <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-300 animate-fadeInUp delay-200">
-              We help startups and enterprises thrive with cutting-edge digital solutions.
+              {t('hero.description')}
             </p>
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-4 animate-fadeInUp delay-400 w-full">
               <a
@@ -162,7 +181,7 @@ export default function HeroWithNavbar() {
                 }}
                 className="w-full sm:w-auto px-8 py-3 rounded-full bg-yellow-400 text-white font-semibold shadow-lg hover:bg-yellow-600 transition transform hover:scale-105 text-center"
               >
-                Get Started
+                {t('navigation.contact')}
               </a>
               <a
                 href="#services"
@@ -172,7 +191,7 @@ export default function HeroWithNavbar() {
                 }}
                 className="w-full sm:w-auto px-8 py-3 rounded-full border border-white text-white font-semibold hover:bg-white/10 transition transform hover:scale-105 text-center"
               >
-                Explore Services
+                {t('navigation.services')}
               </a>
             </div>
           </div>

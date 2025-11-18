@@ -3,8 +3,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from 'next-intl';
 
 export default function ContactForm() {
+  const t = useTranslations('contact');
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -49,10 +51,10 @@ export default function ContactForm() {
 
       <div className="relative max-w-xl mx-auto px-6 z-10">
         <h2 className="text-4xl font-extrabold text-center text-[#D4AF37] mb-4">
-          Contact Us
+          {t('title')}
         </h2>
         <p className="text-center text-gray-600 mb-10">
-          Let’s build something great together. Reach out to our team and we’ll get back to you shortly.
+          {t('subtitle')}
         </p>
 
         <motion.form
@@ -64,7 +66,7 @@ export default function ContactForm() {
         >
           <input
             type="text"
-            placeholder="Your Name"
+            placeholder={t('namePlaceholder')}
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] placeholder-black placeholder-opacity-80 text-black"
@@ -72,14 +74,14 @@ export default function ContactForm() {
           />
           <input
             type="email"
-            placeholder="Your Email"
+            placeholder={t('emailPlaceholder')}
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] placeholder-black placeholder-opacity-80 text-black"
             required
           />
           <textarea
-            placeholder="Your Message"
+            placeholder={t('messagePlaceholder')}
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] placeholder-black placeholder-opacity-80 text-black"
@@ -92,12 +94,12 @@ export default function ContactForm() {
             className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white py-3 rounded-lg font-semibold shadow-xl hover:scale-105 transition-transform cursor-pointer"
             disabled={status === "loading"}
           >
-            {status === "loading" ? "Sending..." : "Send Message"}
+            {status === "loading" ? t('sending') : t('send')}
           </button>
 
           {status === "success" && (
             <p className="text-green-600 text-center mt-4 font-medium">
-              Message sent successfully!
+              {t('success')}
             </p>
           )}
           {status === "error" && (

@@ -3,13 +3,15 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from 'next-intl';
 import { projects, Project } from "@/app/data/projects";
 import HeroWithNavbar from "@/components/Navbar"; // ✅ Scroll-aware navbar
 
 const categories = ["All", "Web Development", "Design", "Data Analytics", "Marketing", "Software"];
 
 export default function ProjectsPage() {
+  const t = useTranslations('projects');
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredProjects =
@@ -26,10 +28,10 @@ export default function ProjectsPage() {
         {/* Page Header */}
         <header className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#D4AF37] mb-4">
-            Our Projects
+            {t('title')}
           </h1>
           <p className="max-w-2xl mx-auto text-gray-700">
-            Discover our portfolio of completed projects, showcasing our expertise in web development, design, marketing, and tech consultancy.
+            {t('subtitle')}
           </p>
 
           {/* Category Filter */}

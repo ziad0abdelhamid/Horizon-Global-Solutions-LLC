@@ -11,17 +11,43 @@ import {
   Megaphone,
   Users,
 } from "lucide-react";
-
-const services = [
-  { title: "Web Development", desc: "Custom-built websites optimized for performance, security, and user experience.", icon: <Code2 className="w-6 h-6" /> },
-  { title: "Data Analytics", desc: "We turn complex data into clear insights that drive smart business decisions.", icon: <BarChart3 className="w-6 h-6" /> },
-  { title: "Financial Advisory", desc: "Strategic financial guidance to help you grow, invest, and scale confidently.", icon: <DollarSign className="w-6 h-6" /> },
-  { title: "Software Programming", desc: "Reliable, scalable, and modern software tailored precisely to your needs.", icon: <Briefcase className="w-6 h-6" /> },
-  { title: "Web & Logo Design", desc: "Elegant digital identities and brand visuals that leave a lasting impression.", icon: <Palette className="w-6 h-6" /> },
-  { title: "Marketing Solutions", desc: "Creative digital campaigns designed to engage and convert your audience.", icon: <Megaphone className="w-6 h-6" /> },
-];
+import { useTranslations } from 'next-intl';
 
 export default function Services() {
+  const t = useTranslations('services');
+
+  const services = [
+    { 
+      titleKey: 'webDevelopment.title', 
+      descKey: 'webDevelopment.description', 
+      icon: <Code2 className="w-6 h-6" /> 
+    },
+    { 
+      titleKey: 'dataAnalytics.title', 
+      descKey: 'dataAnalytics.description', 
+      icon: <BarChart3 className="w-6 h-6" /> 
+    },
+    { 
+      titleKey: 'financialAdvisory.title', 
+      descKey: 'financialAdvisory.description', 
+      icon: <DollarSign className="w-6 h-6" /> 
+    },
+    { 
+      titleKey: 'softwareProgramming.title', 
+      descKey: 'softwareProgramming.description', 
+      icon: <Briefcase className="w-6 h-6" /> 
+    },
+    { 
+      titleKey: 'webDesign.title', 
+      descKey: 'webDesign.description', 
+      icon: <Palette className="w-6 h-6" /> 
+    },
+    { 
+      titleKey: 'marketing.title', 
+      descKey: 'marketing.description', 
+      icon: <Megaphone className="w-6 h-6" /> 
+    },
+  ];
   return (
     <section
       id="services"
@@ -30,10 +56,10 @@ export default function Services() {
       {/* Section Title */}
       <div className="text-center mb-12 sm:mb-16 px-4">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#D4AF37] mb-4">
-          Our Services
+          {t('title')}
         </h2>
         <p className="text-slate-600 max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-base">
-          Empowering your business through innovative technology, data-driven decisions, and exceptional design.
+          {t('subtitle')}
         </p>
       </div>
 
@@ -41,7 +67,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8">
         {services.map((service, i) => (
           <motion.div
-            key={service.title}
+            key={service.titleKey}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -62,12 +88,12 @@ export default function Services() {
 
             {/* Title */}
             <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-2 sm:mb-2 md:mb-3 group-hover:text-[#D4AF37] transition-colors">
-              {service.title}
+              {t(service.titleKey as any)}
             </h3>
 
             {/* Description */}
             <p className="text-xs sm:text-sm md:text-sm text-gray-600 leading-relaxed">
-              {service.desc}
+              {t(service.descKey as any)}
             </p>
           </motion.div>
         ))}
