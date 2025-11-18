@@ -10,9 +10,9 @@ import { usePathname, useRouter } from "next/navigation";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "#services" },
-  { label: "Projects", href: "/projects" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Booking", href: "#contact" },
+  { label: "Portofolio", href: "/projects" },
+  { label: "Our Team", href: "/about" },
 ];
 
 export default function HeroWithNavbar() {
@@ -23,6 +23,10 @@ export default function HeroWithNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // ⭐ Active section state
+  const [activeSection, setActiveSection] = useState<string>(pathname);
+
+  // Navbar scroll shadow
   useEffect(() => {
     const container = document.getElementById("scroll-container") || window;
 
@@ -40,7 +44,10 @@ export default function HeroWithNavbar() {
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // ⭐ Update activeSection when clicking an item
   const goToSection = (href: string) => {
+    setActiveSection(href);
+
     if (href.startsWith("#")) {
       if (isHome) {
         const el = document.querySelector(href);
@@ -51,50 +58,95 @@ export default function HeroWithNavbar() {
     } else {
       router.push(href);
     }
+
     setMenuOpen(false);
   };
 
+  // ⭐ Scroll-based active section detection on homepage
+  useEffect(() => {
+    if (!isHome) return;
+
+    const sectionIds = navItems
+      .filter((i) => i.href.startsWith("#"))
+      .map((i) => i.href);
+
+    const handleScroll = () => {
+      let current = "/";
+
+      for (const id of sectionIds) {
+        const element = document.querySelector(id);
+        if (!element) continue;
+
+        const top = element.getBoundingClientRect().top;
+
+        if (top <= 180) {
+          current = id;
+        }
+      }
+
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHome]);
+
   return (
     <section className="relative font-sans">
-      {/* Navbar */}
+      {/* ================= NAVBAR ================= */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 transition-all duration-300 ${
           scrolled || !isHome ? "bg-white/95 shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="max-w-screen-xl mx-auto flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/">
-            {scrolled || !isHome ? (
-              <span className="text-xl sm:text-2xl font-bold text-gray-800">
-                Horizon Global Solutions
-              </span>
-            ) : (
-              <Image
-                src="/logo-2.png"
-                alt="Horizon Global Solutions"
-                width={400}
-                height={100}
-                className="transition-all duration-300 max-w-[300px] sm:max-w-[300px]"
-              />
-            )}
-          </Link>
-
+        <div
+          onClick={() => {
+            const container = document.getElementById("scroll-container");
+            if (container) {
+              container.scrollTo({ top: 0, behavior: "smooth" });
+            } else if (pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              router.push("/");
+            }
+          }}
+          className="cursor-pointer"
+         >
+          {scrolled || !isHome ? (
+            <span className="text-xl sm:text-2xl font-bold text-gray-800">
+              Horizon Global Solutions
+            </span>
+          ) : (
+            <Image
+              src="/logo-2.png"
+              alt="Horizon Global Solutions"
+              width={400}
+              height={100}
+              className="transition-all duration-300 max-w-[300px] sm:max-w-[300px]"
+            />
+          )}
+         </div>
           {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-6 lg:space-x-8">
-            {navItems.map((item, index) => (
-              <li key={index}>
-                <button
-                  onClick={() => goToSection(item.href)}
-                  className={`relative inline-block font-medium transition-all duration-300
-                    ${scrolled || !isHome ? "text-gray-800" : "text-white"}
-                    hover:scale-105 hover:drop-shadow-lg
-                    after:content-[''] after:block after:h-[2px] after:w-0 after:bg-yellow-600 after:transition-all after:duration-300 hover:after:w-full cursor-pointer`}
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
+            {navItems.map((item, index) => {
+              const isActive = activeSection === item.href;
+
+              return (
+                <li key={index}>
+                  <button
+                    onClick={() => goToSection(item.href)}
+                    className={`relative inline-block font-medium transition-all duration-300
+                      ${scrolled || !isHome ? "text-gray-800" : "text-white"}
+                      ${isActive ? "text-yellow-500 font-bold after:w-full" : ""}
+                      hover:scale-105 hover:drop-shadow-lg
+                      after:content-[''] after:block after:h-[2px] after:w-0 after:bg-yellow-600 after:transition-all after:duration-300 hover:after:w-full cursor-pointer`}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Mobile Hamburger */}
@@ -110,10 +162,9 @@ export default function HeroWithNavbar() {
         </div>
       </nav>
 
-      {/* Fullscreen Mobile Menu */}
+      {/* ================= MOBILE MENU ================= */}
       {menuOpen && (
         <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center text-center transition-all">
-          {/* Close Button */}
           <button
             onClick={() => setMenuOpen(false)}
             className="absolute top-6 right-6 text-white"
@@ -122,25 +173,30 @@ export default function HeroWithNavbar() {
             <X size={36} />
           </button>
 
-          {/* Menu Items */}
           <ul className="space-y-8">
-            {navItems.map((item, index) => (
-              <li key={index}>
-                <button
-                  onClick={() => goToSection(item.href)}
-                  className="text-white font-bold text-2xl hover:text-yellow-400 transition"
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
+            {navItems.map((item, index) => {
+              const isActive = activeSection === item.href;
+
+              return (
+                <li key={index}>
+                  <button
+                    onClick={() => goToSection(item.href)}
+                    className={`font-bold text-2xl transition 
+                      ${isActive ? "text-yellow-400 underline underline-offset-8" : "text-white"}
+                      hover:text-yellow-400`}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
 
-      {/* Hero Section - only show on home page */}
+      {/* ================= HERO SECTION ================= */}
       {isHome && (
-        <div className="relative min-h-[calc(100vh-4rem)] overflow-hidden flex items-center">
+        <div className="relative min-h-screen overflow-hidden flex items-center">
           <div className="absolute inset-0 z-0 w-full h-full">
             <Prism colorStops={["#000000", "#FFD700", "#B8860B"]} blend={0.5} amplitude={1.0} speed={0.5} />
             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>

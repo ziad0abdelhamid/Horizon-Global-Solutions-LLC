@@ -60,7 +60,7 @@ export default function Footer() {
                 href="/about"
                 className="hover:text-[#D4AF37] transition-colors"
               >
-                About Us
+                Meet Our Team
               </Link>
             </li>
             <li>
@@ -76,7 +76,7 @@ export default function Footer() {
                 href="/projects"
                 className="hover:text-[#D4AF37] transition-colors"
               >
-                Projects
+                Portofolio
               </Link>
             </li>
             <li>
@@ -90,47 +90,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Resources */}
-        <div>
-          <h4 className="text-lg font-semibold text-[#D4AF37] mb-4">
-            Resources
-          </h4>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <a
-                href="#"
-                className="hover:text-[#D4AF37] transition-colors"
-              >
-                Blog & Insights
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="hover:text-[#D4AF37] transition-colors"
-              >
-                Case Studies
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="hover:text-[#D4AF37] transition-colors"
-              >
-                White Papers
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="hover:text-[#D4AF37] transition-colors"
-              >
-                Partner Program
-              </a>
-            </li>
-          </ul>
-        </div>
-
         {/* Contact Info & Newsletter */}
         <div>
           <h4 className="text-lg font-semibold text-[#D4AF37] mb-4">
@@ -139,7 +98,7 @@ export default function Footer() {
           <ul className="space-y-3 text-sm">
             <li className="flex items-center gap-2">
               <MapPin size={16} className="text-[#D4AF37]" />
-              <span>Cairo, Egypt</span>
+              <span>Alexandria, Egypt</span>
             </li>
             <li className="flex items-center gap-2">
               <Mail size={16} className="text-[#D4AF37]" />
@@ -152,7 +111,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Phone size={16} className="text-[#D4AF37]" />
-              <span>+20 100 000 0000</span>
+              <span>+20 115 583 5423</span>
             </li>
           </ul>
 

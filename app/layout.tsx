@@ -1,6 +1,7 @@
 import BackToTop from "@/components/BackToTop";
 import "./globals.css";
 import type { Metadata } from "next";
+import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Horizon Global Solutions LLC",
   description: "Professional web, software, data, and consulting services",
@@ -14,7 +15,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        
         {/* 👇 This pushes all content below the sticky navbar */}
         <BackToTop/>
         <div>{children}</div>
