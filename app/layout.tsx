@@ -1,7 +1,6 @@
 import BackToTop from "@/components/BackToTop";
 import "./globals.css";
 import type { Metadata } from "next";
-import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Horizon Global Solutions LLC",
   description: "Professional web, software, data, and consulting services",

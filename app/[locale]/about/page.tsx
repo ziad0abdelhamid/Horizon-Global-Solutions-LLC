@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { Link } from "@/i18n/routing";
-import { useTranslations } from 'next-intl';
-import Prism from "@/components/Prism";
 import HeroWithNavbar from "@/components/Navbar"; // Navbar
 import { FaGlobe } from "react-icons/fa";
 import Footer from "@/components/Footer";
@@ -45,8 +43,6 @@ const teamMembers = [
 
 
 export default function AboutPage() {
-  const t = useTranslations('about');
-  
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } },

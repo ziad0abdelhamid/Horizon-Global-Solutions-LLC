@@ -1,13 +1,9 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { useTranslations } from 'next-intl';
 import { Mail, MapPin, Phone, Linkedin, Facebook, Twitter } from "lucide-react";
 
 export default function Footer() {
-  const t = useTranslations('footer');
-  const tNav = useTranslations('navigation');
-  
   return (
     <footer
       id="footer"
