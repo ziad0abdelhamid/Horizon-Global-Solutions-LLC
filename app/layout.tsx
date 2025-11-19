@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       <body className="antialiased">
         {/* 👇 This pushes all content below the sticky navbar */}
         <BackToTop/>
