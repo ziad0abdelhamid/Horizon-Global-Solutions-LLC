@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import pool from "../lib/neon"; // for API we will call route /api/requests
+import pool from "../lib/neon";
 import { useRouter } from "next/navigation";
 
 const SERVICES = [
@@ -77,11 +77,20 @@ export default function ContactFormSplit() {
 
         {/* LEFT SIDE */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white rounded-3xl shadow-2xl p-10">
+          
+          {/* Section Title */}
+          <h1 className="text-4xl font-bold mb-4 text-[#D4AF37] text-center">
+            Get in Touch with Us
+          </h1>
+          <p className="text-gray-700 mb-6 text-center">
+            We are here to help you grow your business. Select a service and fill out the form to get a personalized response!
+          </p>
+
           {step === "choose" && (
             <>
               <h2 className="text-3xl font-bold mb-6 text-[#D4AF37] text-center">Select a Service</h2>
               <select
-                className="w-full border border-gray-300 rounded-lg p-3 text-black mb-4"
+                className="w-full border border-gray-300 rounded-lg p-3 text-black mb-4 text-lg placeholder-gray-500"
                 value={selectedService}
                 onChange={(e) => setSelectedService(e.target.value)}
               >
@@ -91,7 +100,7 @@ export default function ContactFormSplit() {
                 ))}
               </select>
               <button
-                className="bg-yellow-500 text-white py-3 rounded-lg font-semibold shadow-md w-full hover:bg-yellow-600 transition-colors"
+                className="bg-yellow-500 text-white py-3 rounded-lg font-semibold shadow-md w-full hover:bg-yellow-600 transition-colors cursor-pointer"
                 onClick={handleContinue}
               >
                 Continue
@@ -105,7 +114,9 @@ export default function ContactFormSplit() {
               animate={{ opacity: 1 }}
               className="text-center"
             >
-              <h2 className="text-2xl font-bold text-[#D4AF37] mb-4">Filling info for: {SERVICES.find(s => s.id === selectedService)?.label}</h2>
+              <h2 className="text-2xl font-bold text-[#D4AF37] mb-4">
+                Filling info for: {SERVICES.find(s => s.id === selectedService)?.label}
+              </h2>
             </motion.div>
           )}
         </div>
@@ -125,14 +136,14 @@ export default function ContactFormSplit() {
                 required
                 value={form.firstName}
                 onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                className="border p-3 rounded"
+                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
               />
               <input
                 placeholder="Last Name"
                 required
                 value={form.lastName}
                 onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                className="border p-3 rounded"
+                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
               />
             </div>
 
@@ -143,14 +154,14 @@ export default function ContactFormSplit() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="border p-3 rounded"
+                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
               />
               <input
                 placeholder="Phone"
                 required
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="border p-3 rounded"
+                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
               />
             </div>
 
@@ -159,13 +170,13 @@ export default function ContactFormSplit() {
                 placeholder="ID Number"
                 value={form.idNumber}
                 onChange={(e) => setForm({ ...form, idNumber: e.target.value })}
-                className="border p-3 rounded"
+                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
               />
               <input
                 placeholder="Company"
                 value={form.company}
                 onChange={(e) => setForm({ ...form, company: e.target.value })}
-                className="border p-3 rounded"
+                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
               />
             </div>
 
@@ -174,13 +185,13 @@ export default function ContactFormSplit() {
               rows={5}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="border p-3 w-full rounded"
+              className="border p-3 w-full rounded text-gray-900 placeholder-gray-500 text-lg"
             />
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white py-3 rounded-lg font-semibold shadow-xl hover:scale-105 transition-transform"
+              className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white py-3 rounded-lg font-semibold shadow-xl hover:scale-105 transition-transform cursor-pointer"
             >
               {status === "loading" ? "Sending..." : "Submit Request"}
             </button>
