@@ -1,20 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Prism from "./Prism";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { useTranslations, useLocale } from 'next-intl';
-import { Link, usePathname, useRouter } from '@/i18n/routing';
+import { usePathname, useRouter } from '@/i18n/routing';
 import LanguageSwitcher from './LanguageSwitcher';
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "#services" },
-  { label: "Booking", href: "#contact" },
-  { label: "Portofolio", href: "/projects" },
-  { label: "Our Team", href: "/about" },
-];
 
 export default function HeroWithNavbar() {
   const t = useTranslations();
@@ -26,13 +18,13 @@ export default function HeroWithNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { label: t('navigation.home'), href: "/" },
     { label: t('navigation.services'), href: "#services" },
     { label: t('navigation.contact'), href: "#contact" },
     { label: t('navigation.projects'), href: "/projects" },
     { label: t('navigation.about'), href: "/about" },
-  ];
+  ], [t]);
   // ⭐ Active section state
   const [activeSection, setActiveSection] = useState<string>(pathname);
 
@@ -52,7 +44,7 @@ export default function HeroWithNavbar() {
     handleScroll();
 
     return () => container.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   // ⭐ Update activeSection when clicking an item
   const goToSection = (href: string) => {

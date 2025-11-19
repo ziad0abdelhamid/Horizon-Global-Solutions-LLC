@@ -13,14 +13,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
-  params: any;   // <-- we only bypass validator HERE
+  params: Promise<{locale: string}>;
 }) {
   const { children, params } = props;
-
-  // Your params still work as expected
-  const { locale } = params;
-
-  if (!routing.locales.includes(locale)) {
+  const { locale } = await params;
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as 'en' | 'ar')) {
     notFound();
   }
 

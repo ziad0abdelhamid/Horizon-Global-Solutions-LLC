@@ -9,7 +9,6 @@ import {
   Briefcase,
   Palette,
   Megaphone,
-  Users,
 } from "lucide-react";
 import { useTranslations } from 'next-intl';
 
@@ -88,12 +87,12 @@ export default function Services() {
 
             {/* Title */}
             <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-2 sm:mb-2 md:mb-3 group-hover:text-[#D4AF37] transition-colors">
-              {t(service.titleKey as any)}
+              {t(service.titleKey)}
             </h3>
 
             {/* Description */}
             <p className="text-xs sm:text-sm md:text-sm text-gray-600 leading-relaxed">
-              {t(service.descKey as any)}
+              {t(service.descKey)}
             </p>
           </motion.div>
         ))}
