@@ -13,7 +13,7 @@ const teamMembers = [
     role: "Founder, CEO & General Manager",
     description:
       "Zeyad leads Horizon Global Solutions LLC. with a visionary approach to strategic growth, innovation, and operational excellence. As the company’s founder and chief executive, he oversees all business divisions, ensuring seamless alignment between strategy, execution, and impact.",
-    image: "/zeyad.jpg",
+    image: "/Zeyad.jpg",
     website: "https://www.linkedin.com/in/zeyad-abdelhamid-a76a561b6/",
   },
   {
@@ -21,7 +21,7 @@ const teamMembers = [
     role: "Chief Technology Officer (CTO)",
     description:
       "Moustafa heads the technology division, guiding product development, software engineering, and systems architecture. His expertise in coding and AI-driven innovation ensures that every solution delivered is both scalable and future-ready.",
-    image: "/moustafa.jpg",
+    image: "/Moustafa.jpg",
     website: "https://github.com/Moustafa-H",
   },
   {
@@ -29,7 +29,7 @@ const teamMembers = [
     role: "Marketing & Client Acquisition Director",
     description:
       "Mohamed drives the company’s marketing strategy and oversees client acquisition initiatives. With a deep understanding of market trends and audience engagement, he connects America One Inc. with partners and customers worldwide.",
-    image: "/dito.jpg",
+    image: "/Dito.jpg",
     website: "",
   },
   {
@@ -37,7 +37,7 @@ const teamMembers = [
     role: "Lead Data Analyst",
     description:
       "Mohamed specializes in data analytics and performance insights, transforming complex datasets into actionable intelligence. His analytical acumen supports strategic decision-making across all operational levels of the company.",
-    image: "/sharko.jpg",
+    image: "/Sharko.jpg",
   },
 ];
 
