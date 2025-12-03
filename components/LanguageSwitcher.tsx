@@ -51,7 +51,7 @@ export default function LanguageSwitcher() {
       {/* Dropdown Menu */}
       {isOpen && (
         <div 
-          className="absolute top-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200 min-w-[160px] z-50"
+          className="absolute top-full mt-2 rounded-lg shadow-lg border border-gray-200 min-w-[160px] z-50"
           style={{ [locale === 'ar' ? 'left' : 'right']: '0' }}
         >
           {languages.map((language) => (
@@ -59,22 +59,16 @@ export default function LanguageSwitcher() {
               key={language.code}
               onClick={() => handleLanguageChange(language.code)}
               className={`w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
-                locale === language.code ? 'bg-yellow-50 text-yellow-800' : 'text-gray-700'
+                locale === language.code ? ' text-yellow-500' : 'text-gray-500'
               }`}
               style={{ 
                 flexDirection: locale === 'ar' ? 'row-reverse' : 'row',
                 textAlign: locale === 'ar' ? 'right' : 'left'
               }}
             >
-              
               <span className="text-sm font-medium">{language.name}</span>
               {locale === language.code && (
-                <span 
-                  className="text-yellow-600"
-                  style={{ [locale === 'ar' ? 'marginRight' : 'marginLeft']: 'auto' }}
-                >
-                  ✓
-                </span>
+                <span className="absolute right-4 text-yellow-600 font-bold text-lg">✓</span>
               )}
             </button>
           ))}

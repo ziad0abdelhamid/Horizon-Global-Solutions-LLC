@@ -78,7 +78,7 @@ export default function AboutPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 className="flex flex-col md:flex-row items-center bg-white rounded-2xl shadow-md overflow-hidden"
               >
-                <div className="relative w-full md:w-1/3 h-72">
+                <div className="relative w-full md:w-1/3 aspect-[4/3] md:aspect-[1/1] h-auto">
                   <Image src={member.image} alt={member.name} fill className="object-cover" />
                 </div>
 

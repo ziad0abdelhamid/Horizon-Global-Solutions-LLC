@@ -5,7 +5,7 @@ export interface Project {
   desc: string;
   descAr?: string; // Arabic description
   image: string;
-  category: string;
+  category: string; // must match translation key
   link?: string;
   details?: string;
   detailsAr?: string; // Arabic details
@@ -24,17 +24,17 @@ export const projects: Project[] = [
     titleAr: "موقع الشركة",
     desc: "Custom-built website for a real estate company",
     descAr: "موقع ويب مخصص لشركة عقارات",
-    image: "/projects/real-estate.jpg",
-    category: "Web Development",
+    image: "/projects/real-estate/real-estate.jpg",
+    category: "webDevelopment", // updated
     details: "Developed a fully responsive, SEO-optimized corporate website.",
     detailsAr: "تم تطوير موقع شركة متجاوب بالكامل ومحسن لمحركات البحث.",
     link: "https://www.immo-design.at",
-    images: ["/projects/real-estate-1.jpg", "/projects/real-estate-2.jpg"],
+    images: ["/projects/real-estate/real-estate.jpg", "/projects/real-estate/real-estate-2.jpg", "/projects/real-estate/real-estate-3.jpg"],
     technologies: ["React", "Next.js", "Tailwind CSS", "SEO Optimization"],
     role: "Full-stack Developer",
     duration: "3 months",
     challenges: "Integrating dynamic listings with external API.",
-    keyLearnings: "Learned advanced Next.js SSR and responsive design.",
+    keyLearnings: "Learned advanced Next.js SSR and responsive design."
   },
   {
     id: "data-dashboard",
@@ -42,19 +42,19 @@ export const projects: Project[] = [
     titleAr: "لوحة بيانات",
     desc: "Interactive analytics dashboard for a football data website",
     descAr: "لوحة تحليلات تفاعلية لموقع بيانات كرة القدم",
-    image: "/projects/football.jpg",
-    category: "Data Analytics",
+    image: "/projects/fel-maqas/football.jpg",
+    category: "dataAnalytics", // updated
     details:
       "Designed a dashboard with real-time data of on-going matches, news, and players' statistics",
     detailsAr:
       "تم تصميم لوحة بيانات تحتوي على بيانات مباشرة للمباريات الجارية والأخبار وإحصائيات اللاعبين",
     link: "http://www.fel-maqas.com",
-    images: ["/projects/football-1.jpg", "/projects/football-2.jpg"],
+    images: ["/projects/fel-maqas/football.jpg", "/projects/fel-maqas/football-2.jpg","/projects/fel-maqas/football-3.jpg"],
     technologies: ["React", "D3.js", "Node.js", "REST API"],
     role: "Frontend & Data Engineer",
     duration: "2 months",
     challenges: "Handling live data streaming without performance lags.",
-    keyLearnings: "Optimized data visualization for real-time updates.",
+    keyLearnings: "Optimized data visualization for real-time updates."
   },
   {
     id: "qwsain",
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     desc: "Blog website for learning programming.",
     descAr: "موقع مدونة لتعلم البرمجة",
     image: "/projects/qwsain/1.png",
-    category: "Software Development",
+    category: "software", // updated
     details: "Developed a blog platform to share programming tutorials and articles, with a custom dashboard and roles for managing posts.",
     detailsAr: "تم تطوير منصة مدونة لمشاركة دروس ومقالات البرمجة، مع لوحة تحكم مخصصة وأدوار لإدارة المشاركات.",
     link: "https://qwsain.com",
@@ -89,12 +89,12 @@ export const projects: Project[] = [
       "/projects/qwsain/20.png",
       "/projects/qwsain/21.png",
       "/projects/qwsain/22.png",
-      "/projects/qwsain/23.png",
+      "/projects/qwsain/23.png"
     ],
     technologies: ["WordPress", "PHP", "MySQL", "CSS"],
     role: "Full-stack Developer",
     duration: "1 month",
     challenges: "Dashboard with multiple roles (admin, editor, reviewer) with a post lifecycle system and integrated chat.",
-    keyLearnings: "Improved skills in content management and SEO strategies.",
-  },
+    keyLearnings: "Improved skills in content management and SEO strategies."
+  }
 ];

@@ -215,7 +215,6 @@ export default function HeroWithNavbar() {
             <Prism colorStops={["#000000", "#FFD700", "#B8860B"]} blend={0.5} amplitude={1.0} speed={0.5} />
             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
           </div>
-
           <div className="relative z-10 flex flex-col justify-center items-center text-center px-4 sm:px-6 max-w-3xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white drop-shadow-2xl animate-fadeInUp">
               {t('hero.title')}

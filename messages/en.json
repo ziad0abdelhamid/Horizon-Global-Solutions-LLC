@@ -100,16 +100,30 @@
     }
   },
   "projects": {
-    "title": "My Projects",
-    "subtitle": "A showcase of my work",
-    "viewProject": "View Project",
-    "categories": {
-      "all": "All",
-      "webDevelopment": "Web Development",
-      "design": "Design",
-      "dataAnalytics": "Data Analytics",
-      "marketing": "Marketing",
-      "software": "Software Development"
+  "title": "My Projects",
+  "subtitle": "A showcase of my work",
+  "viewProject": "View Project",
+  "categories": {
+    "all": "All",
+    "webDevelopment": "Web Development",
+    "design": "Design",
+    "dataAnalytics": "Data Analytics",
+    "marketing": "Marketing",
+    "software": "Software Development"
+  },
+  "details": {
+    "corporate-website": {
+      "title": "Corporate Website",
+      "desc": "Custom-built website for a real estate company"
+    },
+    "data-dashboard": {
+      "title": "Data Dashboard",
+      "desc": "Interactive analytics dashboard for a football data website"
+    },
+    "qwsain": {
+      "title": "Qwsain",
+      "desc": "Blog website for learning programming."
     }
   }
-}
+    }
+  }
