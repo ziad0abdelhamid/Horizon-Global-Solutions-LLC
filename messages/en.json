@@ -19,7 +19,7 @@
       "description": "Custom-built websites optimized for performance, security, and user experience."
     },
     "dataAnalytics": {
-      "title": "Data Analytics", 
+      "title": "Data Analytics",
       "description": "We turn complex data into clear insights that drive smart business decisions."
     },
     "financialAdvisory": {
@@ -40,28 +40,76 @@
     }
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Get in touch with us today",
-    "name": "Name",
+    "title": "Get In Touch",
+    "subtitle": "Have a project in mind? Let's talk.",
+    "fillingInfoFor": "Filling info for",
+    "services": {
+      "webDev": "Web Development",
+      "dataAnalytics": "Data Analytics",
+      "financialAdvisory": "Financial Advisory",
+      "softwareProgramming": "Software Programming",
+      "webDesign": "Web Design",
+      "marketing": "Marketing"
+    },
+    "selectService": "Select a Service",
+    "chooseService": "Choose your service",
+    "continue": "Continue",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "email": "Email",
+    "phone": "Phone",
+    "idNumber": "ID Number",
+    "company": "Company",
     "message": "Message",
-    "send": "Send Message",
-    "namePlaceholder": "Enter your name",
-    "emailPlaceholder": "Enter your email",
-    "messagePlaceholder": "Enter your message"
+    "submit": "Submit Request",
+    "success": "Request sent successfully!",
+    "error": "Something went wrong, please try again.",
+    "sending": "Sending..."
   },
   "footer": {
     "copyright": "© 2024 Horizon Global Solutions. All rights reserved.",
     "followUs": "Follow Us"
   },
-  "projects": {
-    "title": "Our Projects",
-    "subtitle": "Discover our latest work and innovations",
-    "viewProject": "View Project",
-    "backToProjects": "Back to Projects"
-  },
   "about": {
     "title": "About Horizon Global Solutions",
     "subtitle": "We are a multidisciplinary team dedicated to building digital ecosystems that empower innovation, efficiency, and sustainable growth worldwide."
+  },
+  "projectsDetail": {
+    "back": "Back to Projects",
+    "technologies": "Technologies",
+    "role": "Role",
+    "duration": "Duration",
+    "challenges": "Challenges",
+    "keyLearnings": "Key Learnings",
+    "visitProject": "Visit Project",
+    "noDescription": "No description available.",
+    "title": {
+      "corporate-website": "Corporate Website",
+      "data-dashboard": "Data Dashboard",
+      "qwsain": "Qwsain"
+    },
+    "desc": {
+      "corporate-website": "Custom-built website for a real estate company",
+      "data-dashboard": "Interactive analytics dashboard for a football data website",
+      "qwsain": "Blog website for learning programming."
+    },
+    "details": {
+      "corporate-website": "Developed a fully responsive, SEO-optimized corporate website.",
+      "data-dashboard": "Designed a dashboard with real-time data of on-going matches, news, and players' statistics",
+      "qwsain": "Developed a blog platform to share programming tutorials and articles, with a custom dashboard and roles for managing posts."
+    }
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "A showcase of my work",
+    "viewProject": "View Project",
+    "categories": {
+      "all": "All",
+      "webDevelopment": "Web Development",
+      "design": "Design",
+      "dataAnalytics": "Data Analytics",
+      "marketing": "Marketing",
+      "software": "Software Development"
+    }
   }
 }

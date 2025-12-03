@@ -30,7 +30,7 @@ export default function LanguageSwitcher() {
       {/* Language Switcher Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200 text-white hover:text-yellow-400"
+        className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200 text-yellow-400 hover:text-yellow-400"
         style={{ flexDirection: locale === 'ar' ? 'row-reverse' : 'row' }}
         aria-label="Change language"
       >

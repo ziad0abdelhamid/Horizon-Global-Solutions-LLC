@@ -4,20 +4,22 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects, Project } from "@/app/data/projects";
 import HeroWithNavbar from "@/components/Navbar";
-import React, { use } from "react";
 import { FaExternalLinkAlt, FaArrowLeft } from "react-icons/fa";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
+import { useTranslations } from 'next-intl';
+import React, { use } from "react";
 
 export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const project: Project | undefined = projects.find((p) => p.id === id);
 
+  const t = useTranslations('projectsDetail'); // <--- use correct namespace
+
   if (!project) return notFound();
 
   return (
     <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-[#faf8f4]">
-      {/* Navbar */}
       <HeroWithNavbar />
 
       <main className="max-w-6xl mx-auto py-24 px-6 font-['Sono'] space-y-12">
@@ -26,7 +28,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
           href="/projects"
           className="inline-flex items-center gap-2 text-[#D4AF37] font-semibold hover:underline"
         >
-          <FaArrowLeft /> Back to Projects
+          <FaArrowLeft /> {t("back")}
         </Link>
 
         {/* Title & Description */}
@@ -36,10 +38,10 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#D4AF37] mb-4">
-            {project.title}
+            {t(`title.${project.id}`)}
           </h1>
-          <p className="text-gray-900 text-lg md:text-xl leading-relaxed">
-            {project.details || project.desc || "No description available."}
+          <p className="text-black text-lg md:text-xl leading-relaxed">
+            {t(`details.${project.id}`) || t(`desc.${project.id}`) || t("noDescription")}
           </p>
         </motion.section>
 
@@ -52,7 +54,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
         >
           <Image
             src={project.image || "/placeholder.png"}
-            alt={project.title}
+            alt={t(`title.${project.id}`)}
             fill
             className="object-cover"
             placeholder="blur"
@@ -61,7 +63,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
         </motion.section>
 
         {/* Additional Images Carousel */}
-        {project.images?.length ? (
+        {project.images?.length && (
           <motion.section
             className="flex gap-4 overflow-x-auto snap-x snap-mandatory py-4 scrollbar-none"
             initial={{ opacity: 0 }}
@@ -69,20 +71,17 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             {project.images.map((img, index) => (
-              <div
-                key={index}
-                className="relative flex-shrink-0 w-80 h-60 rounded-xl overflow-hidden shadow-md snap-center"
-              >
+              <div key={index} className="relative flex-shrink-0 w-80 h-60 rounded-xl overflow-hidden shadow-md snap-center">
                 <Image
                   src={img}
-                  alt={`${project.title} screenshot ${index + 1}`}
+                  alt={`${t(`title.${project.id}`)} screenshot ${index + 1}`}
                   fill
                   className="object-cover"
                 />
               </div>
             ))}
           </motion.section>
-        ) : null}
+        )}
 
         {/* Project Details */}
         <motion.section
@@ -93,42 +92,32 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
         >
           {project.technologies && (
             <p>
-              <span className="font-semibold uppercase tracking-wide text-[#555]">
-                Technologies:
-              </span>{" "}
-              <span className="text-gray-900">{project.technologies.join(", ")}</span>
+              <span className="font-semibold uppercase tracking-wide text-black">{t("technologies")}:</span>{" "}
+              <span className="text-black">{project.technologies.join(", ")}</span>
             </p>
           )}
           {project.role && (
             <p>
-              <span className="font-semibold uppercase tracking-wide text-[#555]">
-                Role:
-              </span>{" "}
-              <span className="text-gray-900">{project.role}</span>
+              <span className="font-semibold uppercase tracking-wide text-black">{t("role")}:</span>{" "}
+              <span className="text-black">{project.role}</span>
             </p>
           )}
           {project.duration && (
             <p>
-              <span className="font-semibold uppercase tracking-wide text-[#555]">
-                Duration:
-              </span>{" "}
-              <span className="text-gray-900">{project.duration}</span>
+              <span className="font-semibold uppercase tracking-wide text-black">{t("duration")}:</span>{" "}
+              <span className="text-black">{project.duration}</span>
             </p>
           )}
           {project.challenges && (
             <p>
-              <span className="font-semibold uppercase tracking-wide text-[#555]">
-                Challenges:
-              </span>{" "}
-              <span className="text-gray-900">{project.challenges}</span>
+              <span className="font-semibold uppercase tracking-wide text-black">{t("challenges")}:</span>{" "}
+              <span className="text-black">{project.challenges}</span>
             </p>
           )}
           {project.keyLearnings && (
             <p>
-              <span className="font-semibold uppercase tracking-wide text-[#555]">
-                Key Learnings:
-              </span>{" "}
-              <span className="text-gray-900">{project.keyLearnings}</span>
+              <span className="font-semibold uppercase tracking-wide text-black">{t("keyLearnings")}:</span>{" "}
+              <span className="text-black">{project.keyLearnings}</span>
             </p>
           )}
         </motion.section>
@@ -146,7 +135,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#D4AF37] text-black font-semibold rounded-lg hover:bg-[#e0c562] transition"
             >
-              Visit Project <FaExternalLinkAlt />
+              {t("visitProject")} <FaExternalLinkAlt />
             </a>
           </motion.section>
         )}

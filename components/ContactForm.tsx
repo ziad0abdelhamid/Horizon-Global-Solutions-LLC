@@ -3,20 +3,19 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import pool from "../lib/neon";
-import { useRouter } from "next/navigation";
-
-const SERVICES = [
-  { id: "webDev", label: "Web Development" },
-  { id: "dataAnalytics", label: "Data Analytics" },
-  { id: "financialAdvisory", label: "Financial Advisory" },
-  { id: "softwareProgramming", label: "Software Programming" },
-  { id: "webDesign", label: "Web Design" },
-  { id: "marketing", label: "Marketing" },
-];
 
 export default function ContactFormSplit() {
   const t = useTranslations("contact");
+
+  const SERVICES = [
+    { id: "webDev", label: t("services.webDev") },
+    { id: "dataAnalytics", label: t("services.dataAnalytics") },
+    { id: "financialAdvisory", label: t("services.financialAdvisory") },
+    { id: "softwareProgramming", label: t("services.softwareProgramming") },
+    { id: "webDesign", label: t("services.webDesign") },
+    { id: "marketing", label: t("services.marketing") }
+  ];
+
   const [selectedService, setSelectedService] = useState("");
   const [step, setStep] = useState<"choose" | "form">("choose");
   const [form, setForm] = useState({
@@ -32,7 +31,7 @@ export default function ContactFormSplit() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleContinue = () => {
-    if (!selectedService) return alert("Please select a service");
+    if (!selectedService) return alert(t("chooseService"));
     setStep("form");
   };
 
@@ -44,12 +43,12 @@ export default function ContactFormSplit() {
       const res = await fetch("/api/requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, serviceId: selectedService }),
+        body: JSON.stringify({ ...form, serviceId: selectedService })
       });
 
       const data = await res.json();
       if (!res.ok) {
-        setErrorMsg(data.error || "Something went wrong");
+        setErrorMsg(t("error"));
         setStatus("error");
         return;
       }
@@ -61,143 +60,144 @@ export default function ContactFormSplit() {
         phone: "",
         idNumber: "",
         company: "",
-        message: "",
+        message: ""
       });
+
       setStatus("success");
     } catch (err) {
-      console.error(err);
-      setErrorMsg("Something went wrong");
+      setErrorMsg(t("error"));
       setStatus("error");
     }
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#f7f5ef] font-['Sono'] relative overflow-hidden">
-      <div className="relative max-w-6xl mx-auto px-6 z-10 flex flex-col md:flex-row gap-10">
+    <section id="contact" className="py-24 bg-[#f7f5ef] font-['Sono'] text-black">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-10">
 
         {/* LEFT SIDE */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white rounded-3xl shadow-2xl p-10">
+        <div className="w-full md:w-1/2 bg-white rounded-3xl shadow-2xl p-10 text-center text-black">
           
-          {/* Section Title */}
-          <h1 className="text-4xl font-bold mb-4 text-[#D4AF37] text-center">
-            Get in Touch with Us
+          <h1 className="text-4xl font-bold mb-4 text-[#D4AF37]">
+            {t("title")}
           </h1>
-          <p className="text-gray-700 mb-6 text-center">
-            We are here to help you grow your business. Select a service and fill out the form to get a personalized response!
+          <p className="mb-6">
+            {t("subtitle")}
           </p>
 
           {step === "choose" && (
             <>
-              <h2 className="text-3xl font-bold mb-6 text-[#D4AF37] text-center">Select a Service</h2>
+              <h2 className="text-3xl font-bold mb-6 text-[#D4AF37]">
+                {t("selectService")}
+              </h2>
+
               <select
-                className="w-full border border-gray-300 rounded-lg p-3 text-black mb-4 text-lg placeholder-gray-500"
+                className="w-full border rounded-lg p-3 mb-4 text-black"
                 value={selectedService}
                 onChange={(e) => setSelectedService(e.target.value)}
               >
-                <option value="">Choose your service</option>
+                <option value="">{t("chooseService")}</option>
                 {SERVICES.map((s) => (
                   <option key={s.id} value={s.id}>{s.label}</option>
                 ))}
               </select>
+
               <button
-                className="bg-yellow-500 text-white py-3 rounded-lg font-semibold shadow-md w-full hover:bg-yellow-600 transition-colors cursor-pointer"
+                className="bg-yellow-500 text-white py-3 rounded-lg w-full hover:bg-yellow-600"
                 onClick={handleContinue}
               >
-                Continue
+                {t("continue")}
               </button>
             </>
           )}
 
           {step === "form" && (
-            <motion.div
+            <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center"
+              className="text-2xl font-bold text-[#D4AF37] mb-4"
             >
-              <h2 className="text-2xl font-bold text-[#D4AF37] mb-4">
-                Filling info for: {SERVICES.find(s => s.id === selectedService)?.label}
-              </h2>
-            </motion.div>
+              {t("fillingInfoFor")}: {SERVICES.find(s => s.id === selectedService)?.label}
+            </motion.h2>
           )}
         </div>
 
-        {/* RIGHT SIDE: FORM */}
+        {/* RIGHT SIDE FORM */}
         {step === "form" && (
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-10 space-y-4 relative z-10 border border-gray-200"
+            className="w-full md:w-1/2 bg-white shadow-2xl rounded-3xl p-10 space-y-4 text-black"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <div className="grid grid-cols-2 gap-4">
               <input
-                placeholder="First Name"
+                placeholder={t("firstName")}
                 required
                 value={form.firstName}
                 onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
+                className="border p-3 rounded text-black"
               />
               <input
-                placeholder="Last Name"
+                placeholder={t("lastName")}
                 required
                 value={form.lastName}
                 onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
+                className="border p-3 rounded text-black"
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <input
                 type="email"
-                placeholder="Email"
+                placeholder={t("email")}
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
+                className="border p-3 rounded text-black"
               />
               <input
-                placeholder="Phone"
+                placeholder={t("phone")}
                 required
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
+                className="border p-3 rounded text-black"
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <input
-                placeholder="ID Number"
+                placeholder={t("idNumber")}
                 value={form.idNumber}
                 onChange={(e) => setForm({ ...form, idNumber: e.target.value })}
-                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
+                className="border p-3 rounded text-black"
               />
               <input
-                placeholder="Company"
+                placeholder={t("company")}
                 value={form.company}
                 onChange={(e) => setForm({ ...form, company: e.target.value })}
-                className="border p-3 rounded text-gray-900 placeholder-gray-500 text-lg"
+                className="border p-3 rounded text-black"
               />
             </div>
 
             <textarea
-              placeholder="Message"
+              placeholder={t("message")}
               rows={5}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="border p-3 w-full rounded text-gray-900 placeholder-gray-500 text-lg"
+              className="border p-3 w-full rounded text-black"
             />
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white py-3 rounded-lg font-semibold shadow-xl hover:scale-105 transition-transform cursor-pointer"
+              className="w-full bg-yellow-500 text-white py-3 rounded-lg hover:bg-yellow-600"
             >
-              {status === "loading" ? "Sending..." : "Submit Request"}
+              {status === "loading" ? t("sending") : t("submit")}
             </button>
 
-            {status === "success" && <p className="text-green-600 text-center">Request sent successfully!</p>}
-            {status === "error" && <p className="text-red-600 text-center">{errorMsg}</p>}
+            {status === "success" && <p className="text-green-600 text-center">{t("success")}</p>}
+            {status === "error" && <p className="text-red-600 text-center">{t("error")}</p>}
           </motion.form>
         )}
       </div>
