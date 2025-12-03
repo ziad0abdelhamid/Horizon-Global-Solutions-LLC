@@ -141,7 +141,7 @@ export default function HeroWithNavbar() {
                 <li key={index}>
                   <button
                     onClick={() => goToSection(item.href)}
-                    className={`relative font-medium transition-all duration-300 text-sm lg:text-base
+                    className={`relative font-medium transition-all duration-300 text-sm lg:text-base hover:cursor-pointer
                       ${scrolled || !isHome ? "text-gray-800" : "text-white"}
                       ${isActive ? "text-yellow-500 font-bold after:w-full" : ""}
                       after:block after:h-[2px] after:w-0 after:bg-yellow-600 after:transition-all hover:after:w-full`}
