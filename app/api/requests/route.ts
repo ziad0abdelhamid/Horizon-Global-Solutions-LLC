@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
     const result = await pool.query(query, values);
 
-    return NextResponse.json({ success: true, id: result.rows[0].id });
+    return NextResponse.json({ success: true });
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });

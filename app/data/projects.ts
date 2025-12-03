@@ -49,4 +49,19 @@ export const projects: Project[] = [
     challenges: "Handling live data streaming without performance lags.",
     keyLearnings: "Optimized data visualization for real-time updates.",
   },
+  {
+    id: "qwsain",
+    title: "Qwsain",
+    desc: "Blog website for learning programming.",
+    image: "/projects/qwsain/1.png",
+    category: "Software Development",
+    details: "Developed a blog platform to share programming tutorials and articles, with a custom dashboard and roles for managing posts.",
+    link: "https://qwsain.com",
+    images: ["/projects/qwsain/2.png", "/projects/qwsain/3.png", "/projects/qwsain/4.png", "/projects/qwsain/5.png", "/projects/qwsain/6.png", "/projects/qwsain/7.png", "/projects/qwsain/8.png", "/projects/qwsain/9.png", "/projects/qwsain/10.png", "/projects/qwsain/11.png", "/projects/qwsain/12.png", "/projects/qwsain/13.png", "/projects/qwsain/14.png", "/projects/qwsain/15.png", "/projects/qwsain/16.png", "/projects/qwsain/17.png", "/projects/qwsain/18.png", "/projects/qwsain/19.png", "/projects/qwsain/20.png", "/projects/qwsain/21.png", "/projects/qwsain/22.png", "/projects/qwsain/23.png"],
+    technologies: ["WordPress", "PHP", "MySQL", "CSS"],
+    role: "Full-stack Developer",
+    duration: "1 month",
+    challenges: "Dashboard with multiple roles (admin, editor, reviewer) with a post lifecycle system and integrated chat.",
+    keyLearnings: "Improved skills in content management and SEO strategies.",
+  }
 ];

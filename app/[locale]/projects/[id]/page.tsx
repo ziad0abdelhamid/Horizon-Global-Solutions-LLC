@@ -4,17 +4,13 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects, Project } from "@/app/data/projects";
 import HeroWithNavbar from "@/components/Navbar";
-import React from "react";
+import React, { use } from "react";
 import { FaExternalLinkAlt, FaArrowLeft } from "react-icons/fa";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 
-interface Props {
-  params: { id: string };
-}
-
-export default function ProjectDetail({ params }: Props) {
-  const { id } = params;
+export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const project: Project | undefined = projects.find((p) => p.id === id);
 
   if (!project) return notFound();
@@ -27,7 +23,7 @@ export default function ProjectDetail({ params }: Props) {
       <main className="max-w-6xl mx-auto py-24 px-6 font-['Sono'] space-y-12">
         {/* Back Button */}
         <Link
-          href="/"
+          href="/projects"
           className="inline-flex items-center gap-2 text-[#D4AF37] font-semibold hover:underline"
         >
           <FaArrowLeft /> Back to Projects

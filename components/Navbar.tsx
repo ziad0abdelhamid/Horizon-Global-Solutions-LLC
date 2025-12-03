@@ -130,7 +130,7 @@ export default function HeroWithNavbar() {
           )}
          </div>
           {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-6 lg:space-x-8">
+          <ul className="hidden items-center md:flex space-x-6 lg:space-x-8">
             {navItems.map((item, index) => {
               const isActive = activeSection === item.href;
 
@@ -149,6 +149,10 @@ export default function HeroWithNavbar() {
                 </li>
               );
             })}
+            
+            <li key="meow">
+              <LanguageSwitcher />
+            </li>
           </ul>
 
           {/* Mobile Menu: Language Switcher + Hamburger */}
