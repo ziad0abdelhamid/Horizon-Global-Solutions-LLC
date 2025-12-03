@@ -4,31 +4,34 @@ import { useState, useEffect, useMemo } from "react";
 import Prism from "./Prism";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { useTranslations, useLocale } from 'next-intl';
-import { usePathname, useRouter } from '@/i18n/routing';
-import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslations, useLocale } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/routing";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function HeroWithNavbar() {
   const t = useTranslations();
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
-  const isHome = pathname === `/${locale}` || pathname === '/';
+  const isHome = pathname === `/${locale}` || pathname === "/";
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const navItems = useMemo(() => [
-    { label: t('navigation.home'), href: "/" },
-    { label: t('navigation.services'), href: "#services" },
-    { label: t('navigation.contact'), href: "#contact" },
-    { label: t('navigation.projects'), href: "/projects" },
-    { label: t('navigation.about'), href: "/about" },
-  ], [t]);
-  // ⭐ Active section state
+  const navItems = useMemo(
+    () => [
+      { label: t("navigation.home"), href: "/" },
+      { label: t("navigation.services"), href: "#services" },
+      { label: t("navigation.contact"), href: "#contact" },
+      { label: t("navigation.projects"), href: "/projects" },
+      { label: t("navigation.about"), href: "/about" },
+    ],
+    [t]
+  );
+
   const [activeSection, setActiveSection] = useState<string>(pathname);
 
-  // Navbar scroll shadow
+  // Scroll listener
   useEffect(() => {
     const container = document.getElementById("scroll-container") || window;
 
@@ -44,9 +47,9 @@ export default function HeroWithNavbar() {
     handleScroll();
 
     return () => container.removeEventListener("scroll", handleScroll);
-  }, [navItems]);
+  }, []);
 
-  // ⭐ Update activeSection when clicking an item
+  // Navigation handler
   const goToSection = (href: string) => {
     setActiveSection(href);
 
@@ -64,7 +67,7 @@ export default function HeroWithNavbar() {
     setMenuOpen(false);
   };
 
-  // ⭐ Scroll-based active section detection on homepage
+  // Section highlighting on scroll (home only)
   useEffect(() => {
     if (!isHome) return;
 
@@ -81,11 +84,10 @@ export default function HeroWithNavbar() {
 
         const top = element.getBoundingClientRect().top;
 
-        if (top <= 180) {
+        if (top <= 200) {
           current = id;
         }
       }
-
       setActiveSection(current);
     };
 
@@ -97,40 +99,41 @@ export default function HeroWithNavbar() {
     <section className="relative font-sans">
       {/* ================= NAVBAR ================= */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 transition-all duration-300 ${
-          scrolled || !isHome ? "bg-white/95 shadow-sm" : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 
+          ${scrolled || !isHome ? "bg-white/95 shadow-sm" : "bg-transparent"}`}
       >
         <div className="max-w-screen-xl mx-auto flex justify-between items-center">
-        <div
-          onClick={() => {
-            const container = document.getElementById("scroll-container");
-            if (container) {
-              container.scrollTo({ top: 0, behavior: "smooth" });
-            } else if (pathname === "/") {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            } else {
-              router.push("/");
-            }
-          }}
-          className="cursor-pointer"
-         >
-          {scrolled || !isHome ? (
-            <span className="text-xl sm:text-2xl font-bold text-gray-800">
-              Horizon Global Solutions
-            </span>
-          ) : (
-            <Image
-              src="/logo-2.png"
-              alt="Horizon Global Solutions"
-              width={400}
-              height={100}
-              className="transition-all duration-300 max-w-[300px] sm:max-w-[300px]"
-            />
-          )}
-         </div>
+          {/* Logo */}
+          <div
+            onClick={() => {
+              const container = document.getElementById("scroll-container");
+              if (container) {
+                container.scrollTo({ top: 0, behavior: "smooth" });
+              } else if (pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              } else {
+                router.push("/");
+              }
+            }}
+            className="cursor-pointer flex items-center"
+          >
+            {scrolled || !isHome ? (
+              <span className="text-lg sm:text-2xl font-bold text-gray-800 whitespace-nowrap">
+                Horizon Global Solutions
+              </span>
+            ) : (
+              <Image
+                src="/logo-2.png"
+                alt="Horizon Global Solutions"
+                width={260}
+                height={60}
+                className="transition-all duration-300 max-w-[200px] sm:max-w-[260px] w-auto h-auto"
+              />
+            )}
+          </div>
+
           {/* Desktop Menu */}
-          <ul className="hidden items-center md:flex space-x-6 lg:space-x-8">
+          <ul className="hidden md:flex items-center space-x-5 lg:space-x-8">
             {navItems.map((item, index) => {
               const isActive = activeSection === item.href;
 
@@ -138,37 +141,32 @@ export default function HeroWithNavbar() {
                 <li key={index}>
                   <button
                     onClick={() => goToSection(item.href)}
-                    className={`relative inline-block font-medium transition-all duration-300
+                    className={`relative font-medium transition-all duration-300 text-sm lg:text-base
                       ${scrolled || !isHome ? "text-gray-800" : "text-white"}
                       ${isActive ? "text-yellow-500 font-bold after:w-full" : ""}
-                      hover:scale-105 hover:drop-shadow-lg
-                      after:content-[''] after:block after:h-[2px] after:w-0 after:bg-yellow-600 after:transition-all after:duration-300 hover:after:w-full cursor-pointer`}
+                      after:block after:h-[2px] after:w-0 after:bg-yellow-600 after:transition-all hover:after:w-full`}
                   >
                     {item.label}
                   </button>
                 </li>
               );
             })}
-            
-            <li key="meow">
+
+            <li>
               <LanguageSwitcher />
             </li>
           </ul>
 
-          {/* Mobile Menu: Language Switcher + Hamburger */}
-          <div className="md:hidden flex items-center" style={{ gap: '0.75rem' }}>
-            {/* Language Switcher for Mobile */}
-            <div>
-              <LanguageSwitcher />
-            </div>
-            
-            {/* Mobile Hamburger */}
+          {/* Mobile Menu Icons */}
+          <div className="md:hidden flex items-center gap-4">
+            <LanguageSwitcher />
+
             <button
-              className={`transition-colors z-50 ${
+              className={`transition-colors ${
                 scrolled || !isHome ? "text-gray-800" : "text-white"
               }`}
               onClick={() => setMenuOpen(true)}
-              aria-label="Toggle menu"
+              aria-label="Menu"
             >
               <Menu size={28} />
             </button>
@@ -178,11 +176,10 @@ export default function HeroWithNavbar() {
 
       {/* ================= MOBILE MENU ================= */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center text-center transition-all">
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
           <button
             onClick={() => setMenuOpen(false)}
             className="absolute top-6 right-6 text-white"
-            aria-label="Close menu"
           >
             <X size={36} />
           </button>
@@ -190,13 +187,12 @@ export default function HeroWithNavbar() {
           <ul className="space-y-8">
             {navItems.map((item, index) => {
               const isActive = activeSection === item.href;
-
               return (
                 <li key={index}>
                   <button
                     onClick={() => goToSection(item.href)}
-                    className={`font-bold text-2xl transition 
-                      ${isActive ? "text-yellow-400 underline underline-offset-8" : "text-white"}
+                    className={`text-2xl font-bold transition 
+                      ${isActive ? "text-yellow-400 underline" : "text-white"}
                       hover:text-yellow-400`}
                   >
                     {item.label}
@@ -210,43 +206,54 @@ export default function HeroWithNavbar() {
 
       {/* ================= HERO SECTION ================= */}
       {isHome && (
-        <div className="relative min-h-screen overflow-hidden flex items-center">
-          <div className="absolute inset-0 z-0 w-full h-full">
-            <Prism colorStops={["#000000", "#FFD700", "#B8860B"]} blend={0.5} amplitude={1.0} speed={0.5} />
+        <div className="relative min-h-[90vh] sm:min-h-screen flex items-center overflow-hidden">
+          {/* Background */}
+          <div className="absolute inset-0 z-0">
+            <Prism
+              colorStops={["#000000", "#FFD700", "#B8860B"]}
+              blend={0.5}
+              amplitude={1.0}
+              speed={0.5}
+            />
             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
           </div>
-          <div className="relative z-10 flex flex-col justify-center items-center text-center px-4 sm:px-6 max-w-3xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white drop-shadow-2xl animate-fadeInUp">
-              {t('hero.title')}
+
+          {/* HERO TEXT */}
+          <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-xl sm:max-w-3xl mx-auto">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-xl animate-fadeInUp leading-tight">
+              {t("hero.title")}
             </h1>
-            <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-300 animate-fadeInUp delay-200">
-              {t('hero.description')}
+
+            <p className="mt-3 sm:mt-5 text-sm sm:text-lg text-gray-300 animate-fadeInUp delay-200">
+              {t("hero.description")}
             </p>
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-4 animate-fadeInUp delay-400 w-full">
+
+            <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fadeInUp delay-400">
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   goToSection("#contact");
                 }}
-                className="w-full sm:w-auto px-8 py-3 rounded-full bg-yellow-400 text-white font-semibold shadow-lg hover:bg-yellow-600 transition transform hover:scale-105 text-center"
+                className="px-7 sm:px-8 py-3 rounded-full bg-yellow-400 text-white font-semibold shadow-lg hover:bg-yellow-600 transition transform hover:scale-105 text-center text-sm sm:text-base"
               >
-                {t('navigation.contact')}
+                {t("navigation.contact")}
               </a>
+
               <a
                 href="#services"
                 onClick={(e) => {
                   e.preventDefault();
                   goToSection("#services");
                 }}
-                className="w-full sm:w-auto px-8 py-3 rounded-full border border-white text-white font-semibold hover:bg-white/10 transition transform hover:scale-105 text-center"
+                className="px-7 sm:px-8 py-3 rounded-full border border-white text-white font-semibold hover:bg-white/10 transition transform hover:scale-105 text-center text-sm sm:text-base"
               >
-                {t('navigation.services')}
+                {t("navigation.services")}
               </a>
             </div>
           </div>
 
-          {/* Animation Keyframes */}
+          {/* Animations */}
           <style jsx>{`
             @keyframes fadeInUp {
               0% {

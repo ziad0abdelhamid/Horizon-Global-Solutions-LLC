@@ -21,10 +21,13 @@ export default function Home() {
   }, []);
 
   return (
-    <main
-      id="scroll-container"
-      className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth"
-    >
+      <main
+        id="scroll-container"
+        className="
+          h-screen overflow-y-scroll scroll-smooth
+          lg:snap-y lg:snap-mandatory
+        "
+      >
       {/* Hero Section with Navbar */}
       <section id="home" className="snap-start h-screen">
         <HeroWithNavbar />
