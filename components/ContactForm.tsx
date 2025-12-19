@@ -13,7 +13,8 @@ export default function ContactFormSplit() {
     { id: "financialAdvisory", label: t("services.financialAdvisory") },
     { id: "softwareProgramming", label: t("services.softwareProgramming") },
     { id: "webDesign", label: t("services.webDesign") },
-    { id: "marketing", label: t("services.marketing") }
+    { id: "marketing", label: t("services.marketing") },
+    { id: "videoEditing", label: t("services.videoEditing") }
   ];
 
   const [selectedService, setSelectedService] = useState("");
@@ -91,7 +92,7 @@ export default function ContactFormSplit() {
               </h2>
 
               <select
-                className="w-full border rounded-lg p-3 mb-4 text-black"
+                className="w-full border rounded-lg p-3 mb-4 text-black cursor-pointer"
                 value={selectedService}
                 onChange={(e) => setSelectedService(e.target.value)}
               >
@@ -102,7 +103,7 @@ export default function ContactFormSplit() {
               </select>
 
               <button
-                className="bg-yellow-500 text-white py-3 rounded-lg w-full hover:bg-yellow-600"
+                className="bg-yellow-500 text-white py-3 rounded-lg w-full hover:bg-yellow-600 cursor-pointer"
                 onClick={handleContinue}
               >
                 {t("continue")}
@@ -191,7 +192,7 @@ export default function ContactFormSplit() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full bg-yellow-500 text-white py-3 rounded-lg hover:bg-yellow-600"
+              className="w-full bg-yellow-500 text-white py-3 rounded-lg hover:bg-yellow-600 cursor-pointer"
             >
               {status === "loading" ? t("sending") : t("submit")}
             </button>

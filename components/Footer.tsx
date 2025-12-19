@@ -79,14 +79,6 @@ export default function Footer() {
                 Portofolio
               </Link>
             </li>
-            <li>
-              <a
-                href="#contact"
-                className="hover:text-[#D4AF37] transition-colors"
-              >
-                Contact
-              </a>
-            </li>
           </ul>
         </div>
 

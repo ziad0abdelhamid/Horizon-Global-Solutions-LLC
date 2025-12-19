@@ -37,6 +37,10 @@
     "marketing": {
       "title": "Marketing Solutions",
       "description": "Creative digital campaigns designed to engage and convert your audience."
+    },
+    "videoEditing": {
+      "title": "Video Editing",
+      "description": "Professional video editing services, transforming raw footage into polished, engaging videos with seamless cuts, color correction, audio enhancement, and visual effects"
     }
   },
   "contact": {
@@ -49,7 +53,8 @@
       "financialAdvisory": "Financial Advisory",
       "softwareProgramming": "Software Programming",
       "webDesign": "Web Design",
-      "marketing": "Marketing"
+      "marketing": "Marketing",
+      "videoEditing": "Video Editing"
     },
     "selectService": "Select a Service",
     "chooseService": "Choose your service",
