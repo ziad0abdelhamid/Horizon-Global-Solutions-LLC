@@ -43,6 +43,42 @@
       "description": "Professional video editing services, transforming raw footage into polished, engaging videos with seamless cuts, color correction, audio enhancement, and visual effects"
     }
   },
+    "aboutPage": {
+    "teamSection": {
+      "title": "Meet Our Team",
+      "members": [
+        {
+          "name": "Zeyad Abdelhamid",
+          "role": "Founder, CEO & General Manager",
+          "description": "Zeyad leads Horizon Global Solutions LLC. with a visionary approach to strategic growth, innovation, and operational excellence. As the company’s founder and chief executive, he oversees all business divisions, ensuring seamless alignment between strategy, execution, and impact.",
+          "websiteLabel": "Visit Profile"
+        },
+        {
+          "name": "Moustafa Hesham",
+          "role": "Chief Technology Officer (CTO)",
+          "description": "Moustafa heads the technology division, guiding product development, software engineering, and systems architecture. His expertise in coding and AI-driven innovation ensures every solution delivered is both scalable and future-ready.",
+          "websiteLabel": "Visit Profile"
+        },
+        {
+          "name": "Mohamed El-Bakry",
+          "role": "Marketing & Client Acquisition Director",
+          "description": "Mohamed drives the company’s marketing strategy and oversees client acquisition initiatives. With a deep understanding of market trends and audience engagement, he connects with partners and customers worldwide.",
+          "websiteLabel": ""
+        },
+        {
+          "name": "Mohamed El Sharkawy",
+          "role": "Lead Data Analyst",
+          "description": "Mohamed specializes in data analytics and performance insights, transforming complex datasets into actionable intelligence. His analytical acumen supports strategic decision-making across all operational levels.",
+          "websiteLabel": ""
+        }
+      ]
+    },
+    "ctaSection": {
+      "title": "Let’s Build Something Great Together",
+      "subtitle": "Partner with us to bring your ideas to life through innovation and technology.",
+      "button": "Contact Us"
+    }
+  },
   "contact": {
     "title": "Get In Touch",
     "subtitle": "Have a project in mind? Let's talk.",
@@ -70,10 +106,6 @@
     "success": "Request sent successfully!",
     "error": "Something went wrong, please try again.",
     "sending": "Sending..."
-  },
-  "footer": {
-    "copyright": "© 2024 Horizon Global Solutions. All rights reserved.",
-    "followUs": "Follow Us"
   },
   "about": {
     "title": "About Horizon Global Solutions",
@@ -130,5 +162,20 @@
       "desc": "Blog website for learning programming."
     }
   }
-    }
+    },
+      "footer": {
+    "companyName": "Horizon Global Solutions",
+    "description": "Empowering businesses through innovative technology, strategic insight, and world-class consulting solutions that drive measurable growth and operational excellence.",
+    "companyLinks": "Company",
+    "team": "Meet Our Team",
+    "services": "Our Services",
+    "portfolio": "Portfolio",
+    "getInTouch": "Get in Touch",
+    "address": "Alexandria, Egypt",
+    "phone": "+20 115 583 5423",
+    "newsletter": "Subscribe to our updates",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Join",
+    "copyright": "© 2025 Horizon Global Solutions LLC. All rights reserved."
+  }
   }
