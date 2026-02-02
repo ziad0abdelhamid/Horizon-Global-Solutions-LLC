@@ -26,8 +26,8 @@
       "title": "Financial Advisory",
       "description": "Strategic financial guidance to help you grow, invest, and scale confidently."
     },
-    "softwareProgramming": {
-      "title": "Software Programming",
+    "software": {
+      "title": "Software Development",
       "description": "Reliable, scalable, and modern software tailored precisely to your needs."
     },
     "webDesign": {
@@ -43,7 +43,7 @@
       "description": "Professional video editing services, transforming raw footage into polished, engaging videos with seamless cuts, color correction, audio enhancement, and visual effects"
     }
   },
-    "aboutPage": {
+  "aboutPage": {
     "teamSection": {
       "title": "Meet Our Team",
       "members": [
@@ -123,47 +123,68 @@
     "title": {
       "corporate-website": "Corporate Website",
       "data-dashboard": "Data Dashboard",
-      "qwsain": "Qwsain"
+      "qwsain": "Qwsain",
+      "beirut-bites": "Beirut Bites",
+      "histology": "Histology",
+      "em-russia": "EM Russia"
     },
     "desc": {
       "corporate-website": "Custom-built website for a real estate company",
       "data-dashboard": "Interactive analytics dashboard for a football data website",
-      "qwsain": "Blog website for learning programming."
+      "qwsain": "Blog website for learning programming.",
+      "beirut-bites": "Fully functioning website for Beirut's culinary scene.",
+      "histology": "Interactive website for histology education.",
+      "em-russia": "Marketing campaign for a tourism company."
     },
     "details": {
       "corporate-website": "Developed a fully responsive, SEO-optimized corporate website.",
       "data-dashboard": "Designed a dashboard with real-time data of on-going matches, news, and players' statistics",
-      "qwsain": "Developed a blog platform to share programming tutorials and articles, with a custom dashboard and roles for managing posts."
+      "qwsain": "Developed a blog platform to share programming tutorials and articles, with a custom dashboard and roles for managing posts.",
+      "beirut-bites": "Developed a full working webapp that can manage restaurant orders, menu, and reservations.",
+      "histology": "Created an interactive educational website to facilitate learning in histology, featuring quizzes and visual aids.",
+      "em-russia": "Executed a comprehensive marketing campaign to boost tourism engagement for a travel company."
     }
   },
   "projects": {
-  "title": "My Projects",
-  "subtitle": "A showcase of my work",
-  "viewProject": "View Project",
-  "categories": {
-    "all": "All",
-    "webDevelopment": "Web Development",
-    "design": "Design",
-    "dataAnalytics": "Data Analytics",
-    "marketing": "Marketing",
-    "software": "Software Development"
-  },
-  "details": {
-    "corporate-website": {
-      "title": "Corporate Website",
-      "desc": "Custom-built website for a real estate company"
+    "title": "My Projects",
+    "subtitle": "A showcase of my work",
+    "viewProject": "View Project",
+    "categories": {
+      "all": "All",
+      "webDevelopment": "Web Development",
+      "design": "Design",
+      "dataAnalytics": "Data Analytics",
+      "marketing": "Marketing",
+      "software": "Software Development"
     },
-    "data-dashboard": {
-      "title": "Data Dashboard",
-      "desc": "Interactive analytics dashboard for a football data website"
-    },
-    "qwsain": {
-      "title": "Qwsain",
-      "desc": "Blog website for learning programming."
+    "details": {
+      "beirut-bites": {
+        "title": "Beirut Bites",
+        "desc": "Fully functioning website for Beirut's culinary scene."
+      },
+      "histology": {
+        "title": "Histology",
+        "desc": "Interactive website for histology education."
+      },
+      "corporate-website": {
+        "title": "Corporate Website",
+        "desc": "Custom-built website for a real estate company"
+      },
+      "data-dashboard": {
+        "title": "Data Dashboard",
+        "desc": "Interactive analytics dashboard for a football data website"
+      },
+      "qwsain": {
+        "title": "Qwsain",
+        "desc": "Blog website for learning programming."
+      },
+      "em-russia": {
+        "title": "EM Russia",
+        "desc": "Marketing campaign for a tourism company."
+      }
     }
-  }
-    },
-      "footer": {
+  },
+  "footer": {
     "companyName": "Horizon Global Solutions",
     "description": "Empowering businesses through innovative technology, strategic insight, and world-class consulting solutions that drive measurable growth and operational excellence.",
     "companyLinks": "Company",
@@ -178,4 +199,4 @@
     "subscribe": "Join",
     "copyright": "© 2025 Horizon Global Solutions LLC. All rights reserved."
   }
-  }
+}

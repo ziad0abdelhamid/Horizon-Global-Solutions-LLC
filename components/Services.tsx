@@ -19,7 +19,7 @@ export default function Services() {
     { titleKey: 'webDevelopment.title', descKey: 'webDevelopment.description', icon: <Code2 className="w-6 h-6" /> },
     { titleKey: 'dataAnalytics.title', descKey: 'dataAnalytics.description', icon: <BarChart3 className="w-6 h-6" /> },
     { titleKey: 'financialAdvisory.title', descKey: 'financialAdvisory.description', icon: <DollarSign className="w-6 h-6" /> },
-    { titleKey: 'softwareProgramming.title', descKey: 'softwareProgramming.description', icon: <Briefcase className="w-6 h-6" /> },
+    { titleKey: 'software.title', descKey: 'software.description', icon: <Briefcase className="w-6 h-6" /> },
     { titleKey: 'webDesign.title', descKey: 'webDesign.description', icon: <Palette className="w-6 h-6" /> },
     { titleKey: 'marketing.title', descKey: 'marketing.description', icon: <Megaphone className="w-6 h-6" /> },
     { titleKey: 'videoEditing.title', descKey: 'videoEditing.description', icon: <Megaphone className="w-6 h-6" /> },

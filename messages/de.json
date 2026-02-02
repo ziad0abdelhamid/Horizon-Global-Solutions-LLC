@@ -1,0 +1,202 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "services": "Dienstleistungen",
+    "projects": "Projekte",
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "Horizon Global Solutions",
+    "subtitle": "Innovation weltweit vorantreiben",
+    "description": "Bereitstellung modernster Technologielösungen, die Unternehmenswachstum und digitale Transformation weltweit fördern."
+  },
+  "services": {
+    "title": "Unsere Dienstleistungen",
+    "subtitle": "Stärken Sie Ihr Unternehmen durch innovative Technologie, datenbasierte Entscheidungen und außergewöhnliches Design.",
+    "webDevelopment": {
+      "title": "Webentwicklung",
+      "description": "Maßgeschneiderte Websites, optimiert für Leistung, Sicherheit und Benutzererfahrung."
+    },
+    "dataAnalytics": {
+      "title": "Datenanalyse",
+      "description": "Wir verwandeln komplexe Daten in klare Erkenntnisse, die intelligente Geschäftsentscheidungen ermöglichen."
+    },
+    "financialAdvisory": {
+      "title": "Finanzberatung",
+      "description": "Strategische Finanzberatung, um Wachstum, Investitionen und Skalierung mit Vertrauen zu ermöglichen."
+    },
+    "software": {
+      "title": "Softwareentwicklung",
+      "description": "Zuverlässige, skalierbare und moderne Software, die genau auf Ihre Bedürfnisse zugeschnitten ist."
+    },
+    "webDesign": {
+      "title": "Web- & Logodesign",
+      "description": "Elegante digitale Identitäten und Markenvisuals, die einen bleibenden Eindruck hinterlassen."
+    },
+    "marketing": {
+      "title": "Marketinglösungen",
+      "description": "Kreative digitale Kampagnen, die Ihr Publikum ansprechen und konvertieren."
+    },
+    "videoEditing": {
+      "title": "Videobearbeitung",
+      "description": "Professionelle Videobearbeitung, die Rohmaterial in polierte, ansprechende Videos mit nahtlosen Schnitten, Farbkorrektur, Audioverbesserung und visuellen Effekten verwandelt."
+    }
+  },
+  "aboutPage": {
+    "teamSection": {
+      "title": "Unser Team kennenlernen",
+      "members": [
+        {
+          "name": "Zeyad Abdelhamid",
+          "role": "Gründer, CEO & Geschäftsführer",
+          "description": "Zeyad leitet Horizon Global Solutions LLC mit einer visionären Herangehensweise an strategisches Wachstum, Innovation und operative Exzellenz. Als Gründer und Geschäftsführer überwacht er alle Geschäftsbereiche und sorgt für eine nahtlose Abstimmung zwischen Strategie, Umsetzung und Wirkung.",
+          "websiteLabel": "Profil besuchen"
+        },
+        {
+          "name": "Moustafa Hesham",
+          "role": "Chief Technology Officer (CTO)",
+          "description": "Moustafa leitet die Technologiedivision und steuert Produktentwicklung, Softwareengineering und Systemarchitektur. Seine Expertise in Codierung und KI-getriebener Innovation stellt sicher, dass jede Lösung skalierbar und zukunftssicher ist.",
+          "websiteLabel": "Profil besuchen"
+        },
+        {
+          "name": "Mohamed El-Bakry",
+          "role": "Leiter Marketing & Kundenakquise",
+          "description": "Mohamed treibt die Marketingstrategie des Unternehmens voran und überwacht Initiativen zur Kundenakquise. Mit tiefem Verständnis für Markttrends und Publikumsinteraktion vernetzt er Partner und Kunden weltweit.",
+          "websiteLabel": ""
+        },
+        {
+          "name": "Mohamed El Sharkawy",
+          "role": "Leitender Datenanalyst",
+          "description": "Mohamed spezialisiert sich auf Datenanalyse und Leistungskennzahlen, wandelt komplexe Datensätze in umsetzbare Erkenntnisse um. Seine analytische Kompetenz unterstützt strategische Entscheidungen auf allen operativen Ebenen.",
+          "websiteLabel": ""
+        }
+      ]
+    },
+    "ctaSection": {
+      "title": "Lassen Sie uns gemeinsam Großartiges schaffen",
+      "subtitle": "Arbeiten Sie mit uns zusammen, um Ihre Ideen durch Innovation und Technologie zum Leben zu erwecken.",
+      "button": "Kontaktieren Sie uns"
+    }
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "subtitle": "Haben Sie ein Projekt im Sinn? Lassen Sie uns sprechen.",
+    "fillingInfoFor": "Informationen ausfüllen für",
+    "services": {
+      "webDev": "Webentwicklung",
+      "dataAnalytics": "Datenanalyse",
+      "financialAdvisory": "Finanzberatung",
+      "softwareProgramming": "Softwareprogrammierung",
+      "webDesign": "Webdesign",
+      "marketing": "Marketing",
+      "videoEditing": "Videobearbeitung"
+    },
+    "selectService": "Dienst auswählen",
+    "chooseService": "Wählen Sie Ihre Dienstleistung",
+    "continue": "Weiter",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "idNumber": "Ausweisnummer",
+    "company": "Unternehmen",
+    "message": "Nachricht",
+    "submit": "Anfrage senden",
+    "success": "Anfrage erfolgreich gesendet!",
+    "error": "Etwas ist schiefgelaufen, bitte versuchen Sie es erneut.",
+    "sending": "Senden..."
+  },
+  "about": {
+    "title": "Über Horizon Global Solutions",
+    "subtitle": "Wir sind ein multidisziplinäres Team, das digitale Ökosysteme aufbaut, die Innovation, Effizienz und nachhaltiges Wachstum weltweit fördern."
+  },
+  "projectsDetail": {
+    "back": "Zurück zu den Projekten",
+    "technologies": "Technologien",
+    "role": "Rolle",
+    "duration": "Dauer",
+    "challenges": "Herausforderungen",
+    "keyLearnings": "Wichtigste Erkenntnisse",
+    "visitProject": "Projekt besuchen",
+    "noDescription": "Keine Beschreibung verfügbar.",
+    "title": {
+      "corporate-website": "Firmenwebsite",
+      "data-dashboard": "Daten-Dashboard",
+      "qwsain": "Qwsain",
+      "beirut-bites": "Beirut Bites",
+      "histology": "Histologie",
+      "em-russia": "EM Russland"
+    },
+    "desc": {
+      "corporate-website": "Maßgeschneiderte Website für ein Immobilienunternehmen",
+      "data-dashboard": "Interaktives Analyse-Dashboard für eine Fußball-Daten-Website",
+      "qwsain": "Blog-Website zum Lernen von Programmierung.",
+      "beirut-bites": "Voll funktionsfähige Website für die kulinarische Szene in Beirut.",
+      "histology": "Interaktive Website für Histologie-Ausbildung.",
+      "em-russia": "Marketingkampagne für ein Tourismusunternehmen."
+    },
+    "details": {
+      "corporate-website": "Entwicklung einer vollständig responsiven, SEO-optimierten Unternehmenswebsite.",
+      "data-dashboard": "Design eines Dashboards mit Echtzeitdaten laufender Spiele, Nachrichten und Spielerstatistiken.",
+      "qwsain": "Entwicklung einer Blogplattform zum Teilen von Programmier-Tutorials und Artikeln mit benutzerdefiniertem Dashboard und Rollenverwaltung.",
+      "beirut-bites": "Entwicklung einer voll funktionsfähigen Webanwendung zur Verwaltung von Restaurantbestellungen, Menüs und Reservierungen.",
+      "histology": "Erstellung einer interaktiven Bildungswebsite zur Erleichterung des Histologie-Lernens mit Quizzen und visuellen Hilfsmitteln.",
+      "em-russia": "Durchführung einer umfassenden Marketingkampagne zur Förderung des Tourismusengagements für ein Reiseunternehmen."
+    }
+  },
+  "projects": {
+    "title": "Meine Projekte",
+    "subtitle": "Eine Übersicht meiner Arbeiten",
+    "viewProject": "Projekt ansehen",
+    "categories": {
+      "all": "Alle",
+      "webDevelopment": "Webentwicklung",
+      "design": "Design",
+      "dataAnalytics": "Datenanalyse",
+      "marketing": "Marketing",
+      "software": "Softwareentwicklung"
+    },
+    "details": {
+      "beirut-bites": {
+        "title": "Beirut Bites",
+        "desc": "Voll funktionsfähige Website für die kulinarische Szene in Beirut."
+      },
+      "histology": {
+        "title": "Histologie",
+        "desc": "Interaktive Website für Histologie-Ausbildung."
+      },
+      "corporate-website": {
+        "title": "Firmenwebsite",
+        "desc": "Maßgeschneiderte Website für ein Immobilienunternehmen"
+      },
+      "data-dashboard": {
+        "title": "Daten-Dashboard",
+        "desc": "Interaktives Analyse-Dashboard für eine Fußball-Daten-Website"
+      },
+      "qwsain": {
+        "title": "Qwsain",
+        "desc": "Blog-Website zum Lernen von Programmierung."
+      },
+      "em-russia": {
+        "title": "EM Russland",
+        "desc": "Marketingkampagne für ein Tourismusunternehmen."
+      }
+    }
+  },
+  "footer": {
+    "companyName": "Horizon Global Solutions",
+    "description": "Unternehmen stärken durch innovative Technologie, strategische Einblicke und erstklassige Beratungsleistungen, die messbares Wachstum und operative Exzellenz ermöglichen.",
+    "companyLinks": "Unternehmen",
+    "team": "Unser Team kennenlernen",
+    "services": "Unsere Dienstleistungen",
+    "portfolio": "Portfolio",
+    "getInTouch": "Kontakt aufnehmen",
+    "address": "Alexandria, Ägypten",
+    "phone": "+20 115 583 5423",
+    "newsletter": "Abonnieren Sie unsere Updates",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail ein",
+    "subscribe": "Abonnieren",
+    "copyright": "© 2025 Horizon Global Solutions LLC. Alle Rechte vorbehalten."
+  }
+}

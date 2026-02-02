@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
 
   const handleLanguageChange = (newLocale: string) => {
     const currentPath = pathname;
-    
+
     router.push(currentPath, { locale: newLocale });
     setIsOpen(false);
   };
@@ -50,7 +50,7 @@ export default function LanguageSwitcher() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div 
+        <div
           className="absolute top-full mt-2 rounded-lg shadow-lg border border-gray-200 min-w-[160px] z-50 hover:cursor-pointer"
           style={{ [locale === 'ar' ? 'left' : 'right']: '0' }}
         >
@@ -58,10 +58,9 @@ export default function LanguageSwitcher() {
             <button
               key={language.code}
               onClick={() => handleLanguageChange(language.code)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
-                locale === language.code ? ' text-yellow-500' : 'text-gray-500'
-              } hover:cursor-pointer`}
-              style={{ 
+              className={`w-full flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${locale === language.code ? ' text-yellow-500' : 'text-gray-500'
+                } hover:cursor-pointer`}
+              style={{
                 flexDirection: locale === 'ar' ? 'row-reverse' : 'row',
                 textAlign: locale === 'ar' ? 'right' : 'left'
               }}
