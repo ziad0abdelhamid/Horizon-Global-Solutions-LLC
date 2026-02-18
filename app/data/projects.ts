@@ -30,7 +30,7 @@ export const projects: Project[] = [
       "Developed a full working webapp that can manage restaurant orders, menu, and reservations.",
     detailsAr:
       "تم تطوير تطبيق ويب كامل يمكنه إدارة طلبات المطاعم والقائمة وحجوزات الطعام.",
-    link: "https://beirut-bites.vercel.app/",
+    link: "https://beirutbitesva.com/",
     images: [
       "/projects/beirut-bites/bb1.jpg",
       "/projects/beirut-bites/bb2.jpg",
@@ -182,7 +182,7 @@ export const projects: Project[] = [
     desc: "Marketing campaign for a tourism company that included a website, social media campaigns and promotional videos.",
     descAr:
       "حملة تسويقية لشركة سياحة شملت موقعًا إلكترونيًا وحملات على وسائل التواصل الاجتماعي وفيديوهات ترويجية.",
-    image: "/projects/em-russia/r1.jpg",
+    image: "/projects/em-russia/r1.png",
     category: ["marketing"], // updated
     details:
       "Developed a comprehensive marketing campaign to boost tourism to Russia, including a responsive website, targeted social media ads, and engaging promotional videos.",
@@ -190,9 +190,9 @@ export const projects: Project[] = [
       "تم تطوير حملة تسويقية شاملة لتعزيز السياحة إلى روسيا، بما في ذلك موقع إلكتروني متجاوب، وإعلانات مستهدفة على وسائل التواصل الاجتماعي، وفيديوهات ترويجية جذابة.",
     link: "https://em-russia.vercel.app/",
     images: [
-      "/projects/em-russia/r1.jpg",
-      "/projects/em-russia/r2.jpg",
-      "/projects/em-russia/r3.jpg",
+      "/projects/em-russia/r1.png",
+      "/projects/em-russia/r2.png",
+      "/projects/em-russia/r3.png",
     ],
     technologies: [
       "React",
@@ -203,6 +203,42 @@ export const projects: Project[] = [
     ],
     role: "Marketing Specialist & Web Developer",
     duration: "3 month",
+    challenges:
+      "Managing multiple marketing channels and coordinating with external agencies.",
+    keyLearnings:
+      "Gained experience in digital marketing strategies and cross-platform promotion.",
+  },
+  {
+    id: "red-sea-partners",
+    title: "Red Sea Partners",
+    titleAr: "شركاء البحر الأحمر",
+    desc: "Marketing campaign for a tourism company that included a website, social media campaigns and promotional videos.",
+    descAr:
+      "حملة تسويقية لشركة سياحة شملت موقعًا إلكترونيًا وحملات على وسائل التواصل الاجتماعي وفيديوهات ترويجية.",
+    image: "/projects/red-sea-partners/r1.png",
+    category: ["marketing"],
+    details:
+      "Developed a comprehensive marketing campaign to boost tourism to Red Sea (Hurghada), including a responsive website, targeted social media ads, and engaging promotional videos.",
+    detailsAr:
+      "تم تطوير حملة  شاملة لتعزيز السياحة إلى البحر الأحمر (الHurghada)، بما في ذلك موقع إلكتروني متجاوب، وإعلانات مستهدفة على وسائل التواصل الاجتماعي، وفيديوهات ترويجية جذابة.",
+    link: "https://red-sea-partners.vercel.app/",
+    images: [
+      "/projects/red-sea-partners/r1.png",
+      "/projects/red-sea-partners/r2.png",
+      "/projects/red-sea-partners/r3.png",
+      "/projects/red-sea-partners/r4.png",
+      "/projects/red-sea-partners/r5.png",
+    ],
+    technologies: [
+      "Next.JS",
+      "TypeScript",
+      "Tailwind CSS",
+      "Facebook Ads",
+      "Adobe Premiere Pro",
+      "Google Ads",
+    ],
+    role: "Marketing Specialist & Web Developer",
+    duration: "5 month",
     challenges:
       "Managing multiple marketing channels and coordinating with external agencies.",
     keyLearnings:
