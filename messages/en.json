@@ -126,7 +126,8 @@
       "qwsain": "Qwsain",
       "beirut-bites": "Beirut Bites",
       "histology": "Histology",
-      "em-russia": "EM Russia"
+      "em-russia": "EM Russia",
+      "red-sea-partners": "Red Sea Partners"
     },
     "desc": {
       "corporate-website": "Custom-built website for a real estate company",
@@ -134,7 +135,8 @@
       "qwsain": "Blog website for learning programming.",
       "beirut-bites": "Fully functioning website for Beirut's culinary scene.",
       "histology": "Interactive website for histology education.",
-      "em-russia": "Marketing campaign for a tourism company."
+      "em-russia": "Marketing campaign for a tourism company.",
+      "red-sea-partners": "Comprehensive marketing campaign to boost tourism to Red Sea (Hurghada)."
     },
     "details": {
       "corporate-website": "Developed a fully responsive, SEO-optimized corporate website.",
@@ -142,7 +144,8 @@
       "qwsain": "Developed a blog platform to share programming tutorials and articles, with a custom dashboard and roles for managing posts.",
       "beirut-bites": "Developed a full working webapp that can manage restaurant orders, menu, and reservations.",
       "histology": "Created an interactive educational website to facilitate learning in histology, featuring quizzes and visual aids.",
-      "em-russia": "Executed a comprehensive marketing campaign to boost tourism engagement for a travel company."
+      "em-russia": "Executed a comprehensive marketing campaign to boost tourism engagement for a travel company.",
+      "red-sea-partners": "Developed a comprehensive marketing campaign to boost tourism to Red Sea (Hurghada), including a responsive website, targeted social media ads, and engaging promotional videos."
     }
   },
   "projects": {
@@ -184,7 +187,7 @@
       },
       "red-sea-partners": {
         "title": "Red Sea Partners",
-        "desc": "Marketing campaign for a real-estate company."
+        "desc": "Marketing campaign for a tourism company."
       }
     }
   },

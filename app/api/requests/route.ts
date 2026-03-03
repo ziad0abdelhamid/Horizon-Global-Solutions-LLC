@@ -18,7 +18,10 @@ export async function POST(req: Request) {
 
     // Basic validation
     if (!serviceId || !firstName || !lastName || !email || !phone) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 },
+      );
     }
 
     const query = `
@@ -27,9 +30,18 @@ export async function POST(req: Request) {
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING id
     `;
-    const values = [serviceId, firstName, lastName, email, phone, idNumber, company, message];
+    const values = [
+      serviceId,
+      firstName,
+      lastName,
+      email,
+      phone,
+      idNumber,
+      company,
+      message,
+    ];
 
-    const result = await pool.query(query, values);
+    await pool.query(query, values);
 
     return NextResponse.json({ success: true });
   } catch (err) {

@@ -1,11 +1,19 @@
 /* globals.css */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
 /* Arabic fonts for better Arabic text rendering */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 * {
-  font-family: 'Work Sans', Arial, Helvetica, sans-serif;
+  font-family: "Saira", "Work Sans", Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
 
@@ -25,6 +33,7 @@ html[dir="rtl"] body {
 
 /* Tailwind base styles */
 @import "tailwindcss";
+
 /* --- Global styles --- */
 button {
   @apply transition-colors duration-200 ease-in-out;
@@ -82,46 +91,52 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
-  background-color: #1a202c; /* Dark background */
-  color: #e2e8f0; /* Light text */
+  background-color: #1a202c;
+  /* Dark background */
+  color: #e2e8f0;
+  /* Light text */
 }
 
 a {
   text-decoration: none;
 }
 
-/* Default: scrollbar hidden */
-*::-webkit-scrollbar {
-  width: 0px; /* completely hidden */
-  background: transparent;
-}
+/* ============================= */
+/* GLOBAL SCROLLBAR (DEFAULT)   */
+/* ============================= */
 
-* {
-  scrollbar-width: none; /* Firefox hidden */
-}
-
-/* Scrollbar visible class */
-.scrollbar-visible *::-webkit-scrollbar {
+/* Webkit browsers */
+::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
-.scrollbar-visible *::-webkit-scrollbar-track {
-  background: #1a202c; /* dark background matches your body */
-  border-radius: 10px;
+::-webkit-scrollbar-track {
+  background: #0f172a;
+  /* matches dark background */
+  border-radius: 12px;
 }
 
-.scrollbar-visible *::-webkit-scrollbar-thumb {
-  background-color: orange; /* premium orange */
-  border-radius: 10px;
-  border: 2px solid #1a202c; /* padding effect */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg,
+      #f59e0b 0%,
+      #f97316 50%,
+      #ea580c 100%);
+  border-radius: 12px;
+  border: 2px solid #0f172a;
+  /* creates floating effect */
+  transition: all 0.3s ease;
 }
 
-.scrollbar-visible *::-webkit-scrollbar-thumb:hover {
-  background-color: #ff9f1a; /* brighter orange on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg,
+      #fbbf24 0%,
+      #fb923c 50%,
+      #f97316 100%);
 }
 
 /* Firefox */
-.scrollbar-visible * {
+* {
   scrollbar-width: thin;
-  scrollbar-color: orange #1a202c;
+  scrollbar-color: #f97316 #0f172a;
 }

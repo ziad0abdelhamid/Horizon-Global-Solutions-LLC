@@ -93,16 +93,18 @@ export default function HeroWithNavbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHome]);
+  }, [isHome, navItems]);
 
   return (
     <section className="relative font-sans">
       {/* ================= NAVBAR ================= */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 
-          ${scrolled || !isHome ? "bg-white/95 shadow-sm" : "bg-transparent"}`}
+        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-2 sm:py-4 transition-all duration-300 
+          ${scrolled || !isHome
+            ? "bg-gradient-to-r from-white/95 to-white/90 backdrop-blur-xl shadow-lg border-b border-white/20"
+            : "bg-transparent"}`}
       >
-        <div className="max-w-screen-xl mx-auto flex justify-between items-center">
+        <div className="max-w-screen-xl mx-auto flex justify-between items-center gap-2 sm:gap-4">
           {/* Logo */}
           <div
             onClick={() => {
@@ -115,11 +117,11 @@ export default function HeroWithNavbar() {
                 router.push("/");
               }
             }}
-            className="cursor-pointer flex items-center"
+            className="cursor-pointer flex items-center flex-shrink-0"
           >
             {scrolled || !isHome ? (
-              <span className="text-lg sm:text-2xl font-bold text-gray-800 whitespace-nowrap">
-                Horizon Global Solutions
+              <span className="text-base sm:text-2xl font-bold bg-gradient-to-r from-[#D4AF37] to-yellow-400 bg-clip-text text-transparent whitespace-nowrap">
+                Horizon Global Solutions LLC
               </span>
             ) : (
               <Image
@@ -127,7 +129,7 @@ export default function HeroWithNavbar() {
                 alt="Horizon Global Solutions"
                 width={260}
                 height={60}
-                className="transition-all duration-300 max-w-[200px] sm:max-w-[260px] w-auto h-auto"
+                className="transition-all duration-300 max-w-[160px] sm:max-w-[260px] w-auto h-auto"
               />
             )}
           </div>
@@ -157,18 +159,17 @@ export default function HeroWithNavbar() {
             </li>
           </ul>
 
-          {/* Mobile Menu Icons */}
-          <div className="md:hidden flex items-center gap-4">
-            <LanguageSwitcher />
-
+          {/* Mobile Menu Icon */}
+          <div className="md:hidden flex items-center gap-2">
             <button
-              className={`transition-colors ${
-                scrolled || !isHome ? "text-gray-800" : "text-white"
-              }`}
+              className={`p-2 rounded-lg transition-all ${scrolled || !isHome
+                ? "text-gray-800 hover:bg-white/20"
+                : "text-white hover:bg-white/10"
+                }`}
               onClick={() => setMenuOpen(true)}
               aria-label="Menu"
             >
-              <Menu size={28} />
+              <Menu size={24} />
             </button>
           </div>
         </div>
@@ -176,24 +177,25 @@ export default function HeroWithNavbar() {
 
       {/* ================= MOBILE MENU ================= */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
+        <div className="fixed inset-0 z-50 bg-gradient-to-br from-[#0f0f1e] via-[#1a1a2e] to-[#0f0f1e] backdrop-blur-xl flex flex-col items-center justify-center p-6 text-center overflow-y-auto pt-20">
           <button
             onClick={() => setMenuOpen(false)}
-            className="absolute top-6 right-6 text-white"
+            className="absolute top-6 right-6 p-2 hover:bg-white/10 rounded-lg transition-all text-[#D4AF37] hover:text-yellow-300"
           >
-            <X size={36} />
+            <X size={32} />
           </button>
 
-          <ul className="space-y-8">
+          <ul className="space-y-6 mb-12 max-w-sm w-full">
             {navItems.map((item, index) => {
               const isActive = activeSection === item.href;
               return (
                 <li key={index}>
                   <button
                     onClick={() => goToSection(item.href)}
-                    className={`text-2xl font-bold transition 
-                      ${isActive ? "text-yellow-400 underline" : "text-white"}
-                      hover:text-yellow-400`}
+                    className={`w-full px-6 py-3 rounded-lg font-bold text-lg transition-all ${isActive
+                      ? "bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black shadow-lg shadow-[#D4AF37]/50"
+                      : "text-white hover:bg-white/10 border border-white/20 hover:border-[#D4AF37]/50"
+                      }`}
                   >
                     {item.label}
                   </button>
@@ -201,12 +203,39 @@ export default function HeroWithNavbar() {
               );
             })}
           </ul>
+
+          {/* Language Switcher in Mobile Menu */}
+          <div className="border-t border-white/20 pt-6 w-full max-w-sm">
+            <p className="text-[#D4AF37] text-sm font-semibold uppercase tracking-widest mb-4">Language</p>
+            <div className="flex gap-3">
+              {[{ code: 'en', name: 'English', flag: '🇬🇧' }, { code: 'ar', name: 'العربية', flag: '🇸🇦' }].map((lang) => {
+                const handleLangChange = (newLocale: string) => {
+                  router.push(pathname, { locale: newLocale });
+                  setMenuOpen(false);
+                };
+                return (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleLangChange(lang.code)}
+                    className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-all ${locale === lang.code
+                      ? "bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black shadow-lg shadow-[#D4AF37]/50"
+                      : "bg-white/10 text-white border border-white/20 hover:border-[#D4AF37]/50 hover:bg-white/15"
+                      }`}
+                  >
+                    <span>{lang.flag} {lang.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
 
+      {/* Mobile menu language change handler */}
+
       {/* ================= HERO SECTION ================= */}
       {isHome && (
-        <div className="relative min-h-[90vh] sm:min-h-screen flex items-center overflow-hidden">
+        <div className="relative h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
           {/* Background */}
           <div className="absolute inset-0 z-0">
             <Prism

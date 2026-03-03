@@ -126,7 +126,8 @@
       "qwsain": "قوصين",
       "beirut-bites": "بيروت بايتس",
       "histology": "هستولوجي",
-      "em-russia": "EM روسيا"
+      "em-russia": "EM روسيا",
+      "red-sea-partners": "شركاء البحر الأحمر"
     },
     "desc": {
       "corporate-website": "موقع ويب مخصص لشركة عقارية",
@@ -183,8 +184,8 @@
         "desc": "حملة تسويقية لشركة سياحية."
       },
       "red-sea-partners": {
-        "title": "Red Sea Partners",
-        "desc": "حملة تسويقية لشركة عقارية."
+        "title": "شركاء البحر الأحمر",
+        "desc": "حملة تسويقية لشركة سياحية."
       }
     }
   },

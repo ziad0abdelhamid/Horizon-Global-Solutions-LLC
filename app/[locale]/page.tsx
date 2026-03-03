@@ -23,10 +23,11 @@ export default function Home() {
   return (
     <main
       id="scroll-container"
-      className="h-screen overflow-y-scroll scroll-smooth lg:snap-y lg:snap-mandatory"
+      className="overflow-y-scroll scroll-smooth"
+      style={{ height: '100vh' }}
     >
       {/* Hero Section with Navbar */}
-      <section id="home" className="snap-start relative h-screen flex flex-col justify-center">
+      <section id="home" className="relative min-h-screen flex flex-col justify-center">
         <HeroWithNavbar />
 
         {/* SVG Divider to Services */}
