@@ -8,7 +8,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
   width: 100%;
 }
 
@@ -107,8 +106,9 @@ a {
 
 /* Webkit browsers */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 30px;
+  height: 30px;
+  z-index: 10020000000000;
 }
 
 ::-webkit-scrollbar-track {

@@ -44,7 +44,7 @@ export default function LanguageSwitcher() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-semibold transition-all duration-300 border backdrop-blur-xl shadow-lg ${isScrolled
+        className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-semibold transition-all duration-300 border backdrop-blur-xl shadow-lg cursor-pointer ${isScrolled
           ? "bg-gradient-to-r from-gray-100 to-gray-50 border-gray-200 text-gray-800 hover:border-[#D4AF37] hover:from-gray-50 hover:to-white hover:shadow-[#D4AF37]/30"
           : "bg-gradient-to-r from-white/15 to-white/10 border-white/20 text-[#D4AF37] hover:text-yellow-300 hover:border-[#D4AF37]/50 hover:from-white/25 hover:to-white/15 hover:shadow-[#D4AF37]/50"
           }`}
@@ -76,7 +76,7 @@ export default function LanguageSwitcher() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.2 }}
-              className={`absolute top-full mt-3 rounded-xl shadow-2xl border overflow-hidden z-50 min-w-[200px] ${isScrolled
+              className={`absolute top-full mt-3 rounded-xl shadow-2xl border overflow-hidden z-50 min-w-[200px]  ${isScrolled
                 ? "bg-gradient-to-br from-white to-gray-50 border-gray-200"
                 : "bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-2xl border-white/20"
                 }`}
@@ -93,7 +93,7 @@ export default function LanguageSwitcher() {
                     router.push(pathname, { locale: language.code });
                     setIsOpen(false);
                   }}
-                  className={`w-full flex items-center space-x-3 px-5 py-3.5 transition-all duration-200 border-b last:border-b-0 ${isScrolled
+                  className={`w-full flex items-center space-x-3 px-5 py-3.5 transition-all duration-200 cursor-pointer border-b last:border-b-0 ${isScrolled
                     ? locale === language.code
                       ? 'bg-[#D4AF37]/10 text-[#D4AF37] border-gray-100'
                       : 'text-gray-700 border-gray-100 hover:text-[#D4AF37]'

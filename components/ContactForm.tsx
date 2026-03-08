@@ -115,7 +115,7 @@ export default function ContactFormSplit() {
                       whileHover={{ scale: 1.02, x: 8 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setSelectedService(service.id)}
-                      className={`w-full p-4 rounded-lg text-left transition-all border-2 ${selectedService === service.id
+                      className={`w-full p-4 rounded-lg text-left transition-all cursor-pointer border-2 ${selectedService === service.id
                         ? "border-[#D4AF37] bg-[#D4AF37]/20 text-[#D4AF37] shadow-lg shadow-[#D4AF37]/50"
                         : "border-white/20 bg-white/5 text-gray-300 hover:border-[#D4AF37]/50 hover:bg-white/10"
                         }`}
@@ -129,7 +129,7 @@ export default function ContactFormSplit() {
                   whileTap={{ scale: 0.98 }}
                   onClick={handleContinue}
                   disabled={!selectedService}
-                  className="w-full mt-8 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full cursor-pointer mt-8 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {t("continue")}
                 </motion.button>
@@ -212,14 +212,7 @@ export default function ContactFormSplit() {
 
                   {/* ID Number & Company */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="relative">
-                      <input
-                        placeholder={t("idNumber")}
-                        value={form.idNumber}
-                        onChange={(e) => setForm({ ...form, idNumber: e.target.value })}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:border-[#D4AF37] focus:bg-white/15 transition-all"
-                      />
-                    </div>
+
                     <div className="relative">
                       <Building className="absolute left-3 top-3 w-5 h-5 text-[#D4AF37] pointer-events-none" />
                       <input
@@ -249,7 +242,7 @@ export default function ContactFormSplit() {
                     whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r cursor-pointer from-[#D4AF37] to-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {status === "loading" ? t("sending") : t("submit")}
                   </motion.button>

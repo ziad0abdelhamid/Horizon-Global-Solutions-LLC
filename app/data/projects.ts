@@ -1,20 +1,20 @@
 export interface Project {
   id: string;
   title: string;
-  titleAr?: string; // Arabic title
+  titleAr?: string;
   desc: string;
-  descAr?: string; // Arabic description
+  descAr?: string;
   image: string;
   category: string[] | string;
   link?: string;
   details?: string;
-  detailsAr?: string; // Arabic details
-  images?: string[]; // optional additional screenshots
-  technologies?: string[]; // optional tech stack
-  role?: string; // your role in the project
-  duration?: string; // duration of the project
-  challenges?: string; // challenges faced
-  keyLearnings?: string; // key learnings
+  detailsAr?: string;
+  images?: string[];
+  technologies?: string[];
+  role?: string;
+  duration?: string;
+  challenges?: string;
+  keyLearnings?: string;
 }
 
 export const projects: Project[] = [
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     desc: "Food blog website for Beirut's culinary scene.",
     descAr: "موقع مدونة للأطعمة لمشهد المطاعم في بيروت",
     image: "/projects/beirut-bites/bb1.jpg",
-    category: ["webDevelopment"], // updated
+    category: ["webDevelopment"],
     details:
       "Developed a full working webapp that can manage restaurant orders, menu, and reservations.",
     detailsAr:
@@ -158,7 +158,7 @@ export const projects: Project[] = [
     desc: "Interactive analytics dashboard for a football data website",
     descAr: "لوحة تحليلات تفاعلية لموقع بيانات كرة القدم",
     image: "/projects/fel-maqas/football.jpg",
-    category: "dataAnalytics", // updated
+    category: "dataAnalytics",
     details:
       "Designed a dashboard with real-time data of on-going matches, news, and players' statistics",
     detailsAr:
@@ -183,7 +183,7 @@ export const projects: Project[] = [
     descAr:
       "حملة تسويقية لشركة سياحة شملت موقعًا إلكترونيًا وحملات على وسائل التواصل الاجتماعي وفيديوهات ترويجية.",
     image: "/projects/em-russia/r1.png",
-    category: ["marketing"], // updated
+    category: ["marketing"],
     details:
       "Developed a comprehensive marketing campaign to boost tourism to Russia, including a responsive website, targeted social media ads, and engaging promotional videos.",
     detailsAr:
@@ -221,7 +221,7 @@ export const projects: Project[] = [
       "Developed a comprehensive marketing campaign to boost tourism to Red Sea (Hurghada), including a responsive website, targeted social media ads, and engaging promotional videos.",
     detailsAr:
       "تم تطوير حملة  شاملة لتعزيز السياحة إلى البحر الأحمر (الHurghada)، بما في ذلك موقع إلكتروني متجاوب، وإعلانات مستهدفة على وسائل التواصل الاجتماعي، وفيديوهات ترويجية جذابة.",
-    link: "https://red-sea-partners.vercel.app/",
+    link: "https://redseapartners.at/",
     images: [
       "/projects/red-sea-partners/r1.png",
       "/projects/red-sea-partners/r2.png",

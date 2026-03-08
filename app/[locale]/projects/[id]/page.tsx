@@ -14,14 +14,23 @@ import { useRef } from "react";
 export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const project: Project | undefined = projects.find((p) => p.id === id);
-  const scrollByAmount = 320; // slightly more than w-80
+  const scrollByAmount = 200; // smaller scroll amount
   const containerRef = useRef<HTMLDivElement | null>(null);
   const t = useTranslations('projectsDetail'); // <--- use correct namespace
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
   const [centerIndex, setCenterIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const styles = {
+    card: "bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/20 hover:border-[#D4AF37]/50 transition-all flex flex-col gap-4 min-h-[220px]",
+    header: "flex items-center gap-2",
+    icon: "w-5 h-5 text-[#D4AF37] flex-shrink-0",
+    title: "text-xs font-bold uppercase tracking-widest text-[#D4AF37]",
+    text: "text-gray-300 text-sm leading-relaxed",
+    pill: "px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] rounded-lg text-xs font-medium border border-[#D4AF37]/30 hover:bg-[#D4AF37]/30 transition-colors whitespace-nowrap"
+  };
   const updateCenterIndex = () => {
     if (!containerRef.current) return;
     const children = Array.from(containerRef.current.children) as HTMLElement[];
@@ -74,14 +83,14 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
   };
 
   return (
-    <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-gradient-to-br from-[#0f0f1e] via-[#1a1a2e] to-[#0f0f1e]">
+    <div className="w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-gradient-to-br from-[#0f0f1e] via-[#1a1a2e] to-[#0f0f1e]">
       <HeroWithNavbar />
 
-      <main className="max-w-6xl mx-auto py-16 sm:py-24 px-4 sm:px-6 font-['Sono'] space-y-16 relative mt-12 sm:mt-0">
+      <main className="max-w-6xl mx-auto py-6 px-4 sm:px-6 font-['Sono'] space-y-8 relative mt-4">
         {/* Decorative Background */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-32 right-0 w-96 h-96 bg-[#D4AF37] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <div className="absolute top-20 right-0 w-64 h-64 bg-[#D4AF37] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-10 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
         </div>
 
         <div className="relative z-10">
@@ -103,21 +112,21 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="space-y-6"
+            className="space-y-2"
           >
             <div>
-              <h1 className="text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#D4AF37] to-yellow-300 bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-[#D4AF37] to-yellow-300 bg-clip-text text-transparent">
                 {t(`title.${project.id}`)}
               </h1>
             </div>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl">
+            <p className="text-sm text-gray-300 leading-relaxed max-w-3xl">
               {t(`details.${project.id}`) || t(`desc.${project.id}`) || t("noDescription")}
             </p>
           </motion.section>
 
           {/* Main Image */}
           <motion.section
-            className="relative w-full h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full h-48 md:h-64 rounded-2xl overflow-hidden shadow-2xl"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -141,7 +150,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
               transition={{ duration: 0.5, delay: 0.3 }}
               className="relative group"
             >
-              <div className="text-sm font-semibold text-[#D4AF37] uppercase tracking-widest mb-4">Gallery</div>
+              <div className="text-xs font-semibold text-[#D4AF37] uppercase tracking-widest mb-6">{t("gallery") || "Gallery"}</div>
 
               {/* Navigation Arrows */}
               <button
@@ -151,10 +160,10 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     behavior: "smooth",
                   })
                 }
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black rounded-full p-3 hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all shadow-lg"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black rounded-full p-2 hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all shadow-lg"
                 aria-label="Scroll left"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
 
               <button
@@ -164,31 +173,32 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     behavior: "smooth",
                   })
                 }
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black rounded-full p-3 hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all shadow-lg"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black rounded-full p-2 hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all shadow-lg"
                 aria-label="Scroll right"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-4 h-4" />
               </button>
 
               {/* Carousel */}
               <motion.section
                 ref={containerRef}
-                className="flex gap-4 overflow-x-auto snap-x snap-mandatory py-4 px-12 scrollbar-none scroll-smooth cursor-grab active:cursor-grabbing"
+                className="flex gap-3 overflow-x-auto snap-x snap-mandatory py-2 px-8 scrollbar-none scroll-smooth cursor-grab active:cursor-grabbing"
                 onMouseDown={onMouseDown}
                 onMouseMove={onMouseMove}
                 onMouseUp={onMouseUpOrLeave}
                 onMouseLeave={onMouseUpOrLeave}
               >
                 {project.images.map((img, index) => (
-                  <motion.div
+                  <motion.button
                     key={index}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.05 }}
                     whileHover={{ y: -8 }}
+                    onClick={() => setSelectedImage(img)}
                     className={index === centerIndex
-                      ? "relative flex-shrink-0 w-80 h-60 rounded-xl overflow-hidden shadow-lg snap-center select-none border border-white/20 transition-all ring-2 ring-[#D4AF37] shadow-[#D4AF37]/50"
-                      : "relative flex-shrink-0 w-80 h-60 rounded-xl overflow-hidden shadow-lg snap-center select-none border border-white/20 transition-all"
+                      ? "relative flex-shrink-0 w-52 h-40 rounded-xl overflow-hidden shadow-lg snap-center select-none border border-white/20 transition-all ring-2 ring-[#D4AF37] shadow-[#D4AF37]/50 cursor-pointer hover:scale-105"
+                      : "relative flex-shrink-0 w-52 h-40 rounded-xl overflow-hidden shadow-lg snap-center select-none border border-white/20 transition-all cursor-pointer hover:scale-105"
                     }
                   >
                     <Image
@@ -197,29 +207,66 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                       fill
                       className="object-cover pointer-events-none"
                     />
-                  </motion.div>
+                  </motion.button>
                 ))}
               </motion.section>
             </motion.div>
           )}
 
-          {/* Project Details Grid */}
+          {/* Image Modal */}
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-4xl h-auto max-h-[90vh] rounded-2xl overflow-hidden border border-[#D4AF37]/30"
+              >
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
+                <Image
+                  src={selectedImage}
+                  alt="Full size project screenshot"
+                  width={1200}
+                  height={800}
+                  className="w-full h-full object-contain"
+                  priority
+                />
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Project Info Grid */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2"
           >
+
             {/* Technologies */}
             {project.technologies && (
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-[#D4AF37]/50 transition-all">
-                <div className="flex items-center gap-3 mb-4">
-                  <Code className="w-5 h-5 text-[#D4AF37]" />
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#D4AF37]">{t("technologies")}</h3>
+              <div className={styles.card}>
+                <div className={styles.header}>
+                  <Code className={styles.icon} />
+                  <h3 className={styles.title}>{t("technologies")}</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
+
+                <div className="flex flex-wrap gap-3">
                   {project.technologies.map((tech, i) => (
-                    <span key={i} className="px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] rounded-full text-sm font-medium border border-[#D4AF37]/30">
+                    <span key={i} className={styles.pill}>
                       {tech}
                     </span>
                   ))}
@@ -229,71 +276,67 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
 
             {/* Role */}
             {project.role && (
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-[#D4AF37]/50 transition-all">
-                <div className="flex items-center gap-3 mb-4">
-                  <Target className="w-5 h-5 text-[#D4AF37]" />
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#D4AF37]">{t("role")}</h3>
+              <div className={styles.card}>
+                <div className={styles.header}>
+                  <Target className={styles.icon} />
+                  <h3 className={styles.title}>{t("role")}</h3>
                 </div>
-                <p className="text-gray-300 text-lg font-semibold">{project.role}</p>
+
+                <p className={styles.text}>{project.role}</p>
               </div>
             )}
 
             {/* Duration */}
             {project.duration && (
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-[#D4AF37]/50 transition-all">
-                <div className="flex items-center gap-3 mb-4">
-                  <Zap className="w-5 h-5 text-[#D4AF37]" />
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#D4AF37]">{t("duration")}</h3>
+              <div className={styles.card}>
+                <div className={styles.header}>
+                  <Zap className={styles.icon} />
+                  <h3 className={styles.title}>{t("duration")}</h3>
                 </div>
-                <p className="text-gray-300 text-lg font-semibold">{project.duration}</p>
+
+                <p className={styles.text}>{project.duration}</p>
               </div>
             )}
+
+            {/* Challenges */}
+            {project.challenges && (
+              <div className={styles.card}>
+                <div className={styles.header}>
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#D4AF37] to-yellow-400 flex items-center justify-center text-black text-xs font-bold flex-shrink-0">!</div>
+                  <h3 className={styles.title}>{t("challenges")}</h3>
+                </div>
+
+                <p className={styles.text}>{project.challenges}</p>
+              </div>
+            )}
+
+            {/* Key Learnings */}
+            {project.keyLearnings && (
+              <div className={styles.card}>
+                <div className={styles.header}>
+                  <Award className={styles.icon} />
+                  <h3 className={styles.title}>{t("keyLearnings")}</h3>
+                </div>
+
+                <p className={styles.text}>{project.keyLearnings}</p>
+              </div>
+            )}
+
+            {/* Visit Project */}
+            {project.link && (
+              <div className={`${styles.card} items-center justify-center`}>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black font-bold rounded-lg text-sm hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all transform hover:scale-105"
+                >
+                  {t("visitProject")} <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </div>
+            )}
+
           </motion.section>
-
-          {/* Challenges & Key Learnings */}
-          {(project.challenges || project.keyLearnings) && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-              {project.challenges && (
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-[#D4AF37]/50 transition-all">
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#D4AF37] mb-4">{t("challenges")}</h3>
-                  <p className="text-gray-300 leading-relaxed">{project.challenges}</p>
-                </div>
-              )}
-
-              {project.keyLearnings && (
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-[#D4AF37]/50 transition-all">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Award className="w-5 h-5 text-[#D4AF37]" />
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-[#D4AF37]">{t("keyLearnings")}</h3>
-                  </div>
-                  <p className="text-gray-300 leading-relaxed">{project.keyLearnings}</p>
-                </div>
-              )}
-            </motion.section>
-          )}
-
-          {/* Visit Project CTA */}
-          {project.link && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all transform hover:scale-105"
-              >
-                {t("visitProject")} <ArrowUpRight className="w-5 h-5" />
-              </a>
-            </motion.section>
-          )}
         </div>
       </main>
     </div>
