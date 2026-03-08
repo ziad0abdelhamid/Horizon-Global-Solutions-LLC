@@ -1,19 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import pool from "../../../../lib/neon";
 
-interface Message {
-  id: string;
-  service_id: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  id_number: string;
-  company: string;
-  message: string;
-  created_at: string;
-}
-
 // GET - Fetch all messages from NeonDB
 export async function GET(req: NextRequest) {
   const token = req.cookies.get("admin_token")?.value;

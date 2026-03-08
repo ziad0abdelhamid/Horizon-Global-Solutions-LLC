@@ -47,7 +47,6 @@ export default function ContactFormSplit() {
         body: JSON.stringify({ ...form, serviceId: selectedService })
       });
 
-      const response = await res.json();
       if (!res.ok) {
         setStatus("error");
         return;
@@ -64,7 +63,8 @@ export default function ContactFormSplit() {
       });
 
       setStatus("success");
-    } catch (_err) {
+    } catch (err) {
+      console.error("Form submission error:", err);
       setStatus("error");
     }
   };

@@ -84,7 +84,7 @@ export const projects: Project[] = ${JSON.stringify(projects, null, 2)};
 }
 
 // GET projects
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const projectsData = fs.readFileSync(projectsFile, "utf-8");
     const projects = parseProjectsArray(projectsData);
@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
 
     // Read existing projects
     const projectsData = fs.readFileSync(projectsFile, "utf-8");
-    let projects = parseProjectsArray(projectsData);
+    const projects = parseProjectsArray(projectsData);
 
     // Add new project
     const newProject: Project = {
@@ -148,7 +148,7 @@ export async function PUT(req: NextRequest) {
     const { id, ...projectData } = await req.json();
 
     const projectsData = fs.readFileSync(projectsFile, "utf-8");
-    let projects = parseProjectsArray(projectsData);
+    const projects = parseProjectsArray(projectsData);
 
     const projectIndex = projects.findIndex((p) => p.id === id);
 

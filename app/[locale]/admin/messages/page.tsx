@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Trash2, Mail, ArrowLeft } from "lucide-react";
 
@@ -38,16 +38,7 @@ export default function AdminMessages({
         getLocale();
     }, [params]);
 
-    useEffect(() => {
-        if (locale) {
-            fetchMessages();
-            // Refresh messages every 30 seconds
-            const interval = setInterval(fetchMessages, 30000);
-            return () => clearInterval(interval);
-        }
-    }, [locale]);
-
-    const fetchMessages = async () => {
+    const fetchMessages = useCallback(async () => {
         try {
             setLoading(true);
             setError("");
@@ -77,7 +68,16 @@ export default function AdminMessages({
         } finally {
             setLoading(false);
         }
-    };
+    }, [locale, router]);
+
+    useEffect(() => {
+        if (locale) {
+            fetchMessages();
+            // Refresh messages every 30 seconds
+            const interval = setInterval(fetchMessages, 30000);
+            return () => clearInterval(interval);
+        }
+    }, [locale, fetchMessages]);
 
     const handleDelete = async (id: string) => {
         if (!confirm("Are you sure you want to delete this message?")) return;
@@ -150,8 +150,8 @@ export default function AdminMessages({
                                             key={message.id}
                                             onClick={() => setSelectedMessage(message)}
                                             className={`w-full text-left p-4 rounded-lg transition cursor-pointer ${selectedMessage?.id === message.id
-                                                    ? "bg-yellow-100 border-2 border-yellow-500"
-                                                    : "bg-white border border-slate-200 hover:bg-slate-50"
+                                                ? "bg-yellow-100 border-2 border-yellow-500"
+                                                : "bg-white border border-slate-200 hover:bg-slate-50"
                                                 }`}
                                         >
                                             <div className="flex items-start space-x-2">

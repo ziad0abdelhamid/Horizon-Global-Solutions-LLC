@@ -6,11 +6,6 @@ import { useState, useEffect } from 'react';
 import { Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const languages = [
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦' }
-];
-
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();

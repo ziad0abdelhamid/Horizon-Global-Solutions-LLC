@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Trash2, Edit2, Plus, ArrowLeft } from "lucide-react";
 
@@ -63,13 +63,7 @@ export default function AdminProjects({
         getLocale();
     }, [params]);
 
-    useEffect(() => {
-        if (locale) {
-            fetchProjects();
-        }
-    }, [locale]);
-
-    const fetchProjects = async () => {
+    const fetchProjects = useCallback(async () => {
         try {
             setLoading(true);
             setError("");
@@ -98,7 +92,13 @@ export default function AdminProjects({
         } finally {
             setLoading(false);
         }
-    };
+    }, [locale, router]);
+
+    useEffect(() => {
+        if (locale) {
+            fetchProjects();
+        }
+    }, [locale, fetchProjects]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
