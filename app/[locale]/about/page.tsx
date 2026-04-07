@@ -53,7 +53,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div id="scroll-container" className="w-full min-h-screen overflow-y-scroll scroll-smooth bg-white pt-5">
+    <div className="w-full min-h-screen bg-white pt-5">
       {/* Hero Section */}
       <HeroWithNavbar />
 
@@ -77,9 +77,8 @@ export default function AboutPage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
-              className={`flex flex-col md:flex-row items-center bg-white rounded-2xl shadow-md overflow-hidden ${
-                locale === "ar" ? "md:flex-row-reverse" : ""
-              }`}
+              className={`flex flex-col md:flex-row items-center bg-white rounded-2xl shadow-md overflow-hidden ${locale === "ar" ? "md:flex-row-reverse" : ""
+                }`}
             >
               {/* Member Image */}
               <div className="relative w-full md:w-1/3 aspect-[4/3] md:aspect-square">
@@ -88,9 +87,8 @@ export default function AboutPage() {
 
               {/* Member Info (Selective RTL) */}
               <div
-                className={`w-full md:w-2/3 p-6 sm:p-8 text-center md:text-left ${
-                  locale === "ar" ? "text-right" : "text-left"
-                }`}
+                className={`w-full md:w-2/3 p-6 sm:p-8 text-center md:text-left ${locale === "ar" ? "text-right" : "text-left"
+                  }`}
               >
                 <h3 className={`text-2xl sm:text-3xl font-bold mb-2 text-gray-900`}>
                   {member.name}
