@@ -23,14 +23,6 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
   const [centerIndex, setCenterIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const styles = {
-    card: "bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/20 hover:border-[#D4AF37]/50 transition-all flex flex-col gap-4 min-h-[220px]",
-    header: "flex items-center gap-2",
-    icon: "w-5 h-5 text-[#D4AF37] flex-shrink-0",
-    title: "text-xs font-bold uppercase tracking-widest text-[#D4AF37]",
-    text: "text-gray-300 text-sm leading-relaxed",
-    pill: "px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] rounded-lg text-xs font-medium border border-[#D4AF37]/30 hover:bg-[#D4AF37]/30 transition-colors whitespace-nowrap"
-  };
   const updateCenterIndex = () => {
     if (!containerRef.current) return;
     const children = Array.from(containerRef.current.children) as HTMLElement[];
@@ -83,63 +75,64 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
   };
 
   return (
-    <div className="w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-gradient-to-br from-[#0f0f1e] via-[#1a1a2e] to-[#0f0f1e]">
+    <div className="w-full min-h-screen scroll-smooth bg-gradient-to-br from-[#0f0f1e] via-[#1a1a2e] to-[#0f0f1e]">
       <HeroWithNavbar />
 
-      <main className="max-w-6xl mx-auto py-6 px-4 sm:px-6 font-['Sono'] space-y-8 relative mt-4">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 font-['Sono'] relative">
         {/* Decorative Background */}
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <div className="absolute top-20 right-0 w-64 h-64 bg-[#D4AF37] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-10 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="fixed inset-0 opacity-5 pointer-events-none -z-10">
+          <div className="absolute top-20 right-0 w-96 h-96 bg-[#D4AF37] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="relative z-10">
-          {/* Back Button */}
+        <div className="relative z-10 pt-24 pb-20">
+          {/* Header Section with Back Button */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-start justify-between gap-6 mb-12"
           >
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 px-4 py-2 text-[#D4AF37] font-semibold hover:text-yellow-300 transition-colors bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg hover:border-[#D4AF37]/50"
-            >
-              ← {t("back")}
-            </Link>
+            <div className="flex-1">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 px-4 py-2 mb-8 text-[#D4AF37] font-semibold hover:text-yellow-300 transition-all bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg hover:border-[#D4AF37]/50 hover:bg-white/10"
+              >
+                ← {t("back")}
+              </Link>
+              <div>
+                <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[#D4AF37] to-yellow-300 bg-clip-text text-transparent mb-4">
+                  {t(`title.${project.id}`)}
+                </h1>
+                <p className="text-base text-gray-300 leading-relaxed max-w-2xl font-light">
+                  {t(`details.${project.id}`) || t(`desc.${project.id}`) || t("noDescription")}
+                </p>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Title & Description */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="space-y-2"
-          >
-            <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-[#D4AF37] to-yellow-300 bg-clip-text text-transparent">
-                {t(`title.${project.id}`)}
-              </h1>
-            </div>
-            <p className="text-sm text-gray-300 leading-relaxed max-w-3xl">
-              {t(`details.${project.id}`) || t(`desc.${project.id}`) || t("noDescription")}
-            </p>
-          </motion.section>
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/30 to-[#D4AF37]/0 mb-12"></div>
 
-          {/* Main Image */}
+          {/* Main Image Section */}
           <motion.section
-            className="relative w-full h-48 md:h-64 rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full rounded-2xl overflow-hidden shadow-2xl mb-16"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <Image
-              src={project.image || "/placeholder.png"}
-              alt={t(`title.${project.id}`)}
-              fill
-              className="object-cover"
-              placeholder="blur"
-              blurDataURL="/placeholder.png"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div className="relative w-full h-72 md:h-96 lg:h-[500px]">
+              <Image
+                src={project.image || "/placeholder.png"}
+                alt={t(`title.${project.id}`)}
+                fill
+                className="object-cover"
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            </div>
           </motion.section>
 
           {/* Additional Images Carousel */}
@@ -147,10 +140,12 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative group"
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="relative group mb-16"
             >
-              <div className="text-xs font-semibold text-[#D4AF37] uppercase tracking-widest mb-6">{t("gallery") || "Gallery"}</div>
+              <h2 className="text-xl font-semibold text-[#D4AF37] uppercase tracking-widest mb-8">
+                {t("gallery") || "Gallery"}
+              </h2>
 
               {/* Navigation Arrows */}
               <button
@@ -160,10 +155,10 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     behavior: "smooth",
                   })
                 }
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black rounded-full p-2 hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all shadow-lg"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black rounded-full p-3 hover:shadow-xl hover:shadow-[#D4AF37]/60 transition-all shadow-lg hidden md:flex items-center justify-center"
                 aria-label="Scroll left"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
 
               <button
@@ -173,16 +168,16 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     behavior: "smooth",
                   })
                 }
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black rounded-full p-2 hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all shadow-lg"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black rounded-full p-3 hover:shadow-xl hover:shadow-[#D4AF37]/60 transition-all shadow-lg hidden md:flex items-center justify-center"
                 aria-label="Scroll right"
               >
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-5 h-5" />
               </button>
 
               {/* Carousel */}
               <motion.section
                 ref={containerRef}
-                className="flex gap-3 overflow-x-auto snap-x snap-mandatory py-2 px-8 scrollbar-none scroll-smooth cursor-grab active:cursor-grabbing"
+                className="flex gap-4 overflow-x-auto py-4 px-2 scrollbar-none scroll-smooth cursor-grab active:cursor-grabbing"
                 onMouseDown={onMouseDown}
                 onMouseMove={onMouseMove}
                 onMouseUp={onMouseUpOrLeave}
@@ -193,20 +188,23 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     key={index}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ y: -8 }}
+                    transition={{ delay: index * 0.08 }}
+                    whileHover={{ y: -6 }}
                     onClick={() => setSelectedImage(img)}
-                    className={index === centerIndex
-                      ? "relative flex-shrink-0 w-52 h-40 rounded-xl overflow-hidden shadow-lg snap-center select-none border border-white/20 transition-all ring-2 ring-[#D4AF37] shadow-[#D4AF37]/50 cursor-pointer hover:scale-105"
-                      : "relative flex-shrink-0 w-52 h-40 rounded-xl overflow-hidden shadow-lg snap-center select-none border border-white/20 transition-all cursor-pointer hover:scale-105"
-                    }
+                    className={`relative flex-shrink-0 rounded-xl overflow-hidden shadow-lg snap-center select-none transition-all cursor-pointer
+                      ${index === centerIndex
+                        ? "w-56 h-44 ring-2 ring-[#D4AF37] ring-offset-2 ring-offset-[#0f0f1e] shadow-[#D4AF37]/50"
+                        : "w-56 h-44 hover:shadow-xl hover:scale-105"
+                      }
+                    `}
                   >
                     <Image
                       src={img}
                       alt={`${t(`title.${project.id}`)} screenshot ${index + 1}`}
                       fill
-                      className="object-cover pointer-events-none"
+                      className="object-cover"
                     />
+                    <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all"></div>
                   </motion.button>
                 ))}
               </motion.section>
@@ -250,92 +248,116 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
 
           {/* Project Info Grid */}
           <motion.section
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2"
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mb-12"
           >
+            <h2 className="text-2xl font-bold text-white mb-8">
+              Project Details
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            {/* Technologies */}
-            {project.technologies && (
-              <div className={styles.card}>
-                <div className={styles.header}>
-                  <Code className={styles.icon} />
-                  <h3 className={styles.title}>{t("technologies")}</h3>
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="group bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-lg rounded-xl p-6 border border-white/15 hover:border-[#D4AF37]/50 transition-all hover:shadow-lg hover:shadow-[#D4AF37]/20">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="p-2 rounded-lg bg-[#D4AF37]/10">
+                      <Code className="w-5 h-5 text-[#D4AF37]" />
+                    </div>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#D4AF37]">
+                      {t("technologies")}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="px-3 py-1 bg-[#D4AF37]/15 text-[#D4AF37] rounded-full text-xs font-semibold border border-[#D4AF37]/30 hover:bg-[#D4AF37]/25 transition-colors">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+              )}
 
-                <div className="flex flex-wrap gap-3">
-                  {project.technologies.map((tech, i) => (
-                    <span key={i} className={styles.pill}>
-                      {tech}
-                    </span>
-                  ))}
+              {/* Role */}
+              {project.role && (
+                <div className="group bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-lg rounded-xl p-6 border border-white/15 hover:border-[#D4AF37]/50 transition-all hover:shadow-lg hover:shadow-[#D4AF37]/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-lg bg-[#D4AF37]/10">
+                      <Target className="w-5 h-5 text-[#D4AF37]" />
+                    </div>
+                    <h3 className="text-sm font-bold text-center uppercase tracking-wider text-[#D4AF37]">
+                      {t("role")}
+                    </h3>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed">{project.role}</p>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Role */}
-            {project.role && (
-              <div className={styles.card}>
-                <div className={styles.header}>
-                  <Target className={styles.icon} />
-                  <h3 className={styles.title}>{t("role")}</h3>
+              {/* Duration */}
+              {project.duration && (
+                <div className="group bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-lg rounded-xl p-6 border border-white/15 hover:border-[#D4AF37]/50 transition-all hover:shadow-lg hover:shadow-[#D4AF37]/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-lg bg-[#D4AF37]/10">
+                      <Zap className="w-5 h-5 text-[#D4AF37]" />
+                    </div>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#D4AF37]">
+                      {t("duration")}
+                    </h3>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed">{project.duration}</p>
                 </div>
+              )}
 
-                <p className={styles.text}>{project.role}</p>
-              </div>
-            )}
-
-            {/* Duration */}
-            {project.duration && (
-              <div className={styles.card}>
-                <div className={styles.header}>
-                  <Zap className={styles.icon} />
-                  <h3 className={styles.title}>{t("duration")}</h3>
+              {/* Challenges */}
+              {project.challenges && (
+                <div className="group bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-lg rounded-xl p-6 border border-white/15 hover:border-[#D4AF37]/50 transition-all hover:shadow-lg hover:shadow-[#D4AF37]/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-lg bg-[#D4AF37]/10">
+                      <div className="w-4 h-4 rounded-full bg-[#D4AF37] flex items-center justify-center text-black text-xs font-bold">!</div>
+                    </div>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#D4AF37]">
+                      {t("challenges")}
+                    </h3>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed">{project.challenges}</p>
                 </div>
+              )}
 
-                <p className={styles.text}>{project.duration}</p>
-              </div>
-            )}
-
-            {/* Challenges */}
-            {project.challenges && (
-              <div className={styles.card}>
-                <div className={styles.header}>
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#D4AF37] to-yellow-400 flex items-center justify-center text-black text-xs font-bold flex-shrink-0">!</div>
-                  <h3 className={styles.title}>{t("challenges")}</h3>
+              {/* Key Learnings */}
+              {project.keyLearnings && (
+                <div className="group bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-lg rounded-xl p-6 border border-white/15 hover:border-[#D4AF37]/50 transition-all hover:shadow-lg hover:shadow-[#D4AF37]/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-lg bg-[#D4AF37]/10">
+                      <Award className="w-5 h-5 text-[#D4AF37]" />
+                    </div>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#D4AF37]">
+                      {t("keyLearnings")}
+                    </h3>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed">{project.keyLearnings}</p>
                 </div>
+              )}
 
-                <p className={styles.text}>{project.challenges}</p>
-              </div>
-            )}
-
-            {/* Key Learnings */}
-            {project.keyLearnings && (
-              <div className={styles.card}>
-                <div className={styles.header}>
-                  <Award className={styles.icon} />
-                  <h3 className={styles.title}>{t("keyLearnings")}</h3>
-                </div>
-
-                <p className={styles.text}>{project.keyLearnings}</p>
-              </div>
-            )}
-
-            {/* Visit Project */}
-            {project.link && (
-              <div className={`${styles.card} items-center justify-center`}>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-yellow-400 text-black font-bold rounded-lg text-sm hover:shadow-lg hover:shadow-[#D4AF37]/50 transition-all transform hover:scale-105"
+              {/* Visit Project CTA */}
+              {project.link && (
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center justify-center bg-gradient-to-br from-[#D4AF37] to-yellow-400 rounded-xl p-6 border border-[#D4AF37]/50 hover:shadow-2xl hover:shadow-[#D4AF37]/40 transition-all cursor-pointer group col-span-1 sm:col-span-2 lg:col-span-1"
                 >
-                  {t("visitProject")} <ArrowUpRight className="w-4 h-4" />
-                </a>
-              </div>
-            )}
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 text-black font-bold text-center"
+                  >
+                    <span>{t("visitProject")}</span>
+                    <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
+                  </a>
+                </motion.div>
+              )}
 
+            </div>
           </motion.section>
         </div>
       </main>

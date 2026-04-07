@@ -19,7 +19,7 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
-      image: "/zeyad.jpg",
+      image: "/ceo.jpg",
       name: t("teamSection.members.0.name"),
       role: t("teamSection.members.0.role"),
       description: t("teamSection.members.0.description"),

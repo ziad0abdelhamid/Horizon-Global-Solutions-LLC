@@ -5,7 +5,7 @@ import "../globals.css";
 import Services from "@/components/Services";
 import Contact from "@/components/ContactForm";
 import Footer from "@/components/Footer";
-import HeroWithNavbar from "@/components/Navbar"; // your existing Navbar component
+import HeroWithNavbar from "@/components/Navbar";
 
 export default function Home() {
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Home() {
     <main
       id="scroll-container"
       className="overflow-y-scroll scroll-smooth"
-      style={{ height: '100vh' }}
+      style={{ height: '100vh', scrollbarGutter: 'stable' }}
     >
       {/* Hero Section with Navbar */}
       <section id="home" className="relative min-h-screen flex flex-col justify-center">

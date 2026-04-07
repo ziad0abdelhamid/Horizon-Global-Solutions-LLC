@@ -4,13 +4,6 @@
 /* Arabic fonts for better Arabic text rendering */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
 * {
   font-family: "Saira", "Work Sans", Arial, Helvetica, sans-serif;
   box-sizing: border-box;
@@ -103,7 +96,6 @@ a {
 /* ============================= */
 /* GLOBAL SCROLLBAR (DEFAULT)   */
 /* ============================= */
-
 /* Webkit browsers */
 ::-webkit-scrollbar {
   width: 30px;
@@ -113,7 +105,6 @@ a {
 
 ::-webkit-scrollbar-track {
   background: #0f172a;
-  /* matches dark background */
   border-radius: 12px;
 }
 
