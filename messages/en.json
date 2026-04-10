@@ -113,6 +113,8 @@
   },
   "projectsDetail": {
     "back": "Back to Projects",
+    "backToProject": "Back to Project",
+    "viewPrivacyPolicy": "View Privacy Policy",
     "gallery": "Gallery",
     "technologies": "Technologies",
     "role": "Role",
@@ -122,6 +124,7 @@
     "visitProject": "Visit Project",
     "noDescription": "No description available.",
     "title": {
+      "add-qrcode-to-pdf": "Add QR Code to PDF",
       "corporate-website": "Corporate Website",
       "data-dashboard": "Data Dashboard",
       "qwsain": "Qwsain",
@@ -131,6 +134,7 @@
       "red-sea-partners": "Red Sea Partners"
     },
     "desc": {
+      "add-qrcode-to-pdf": "Tool for adding QR codes to PDF documents.",
       "corporate-website": "Custom-built website for a real estate company",
       "data-dashboard": "Interactive analytics dashboard for a football data website",
       "qwsain": "Blog website for learning programming.",
@@ -140,6 +144,7 @@
       "red-sea-partners": "Comprehensive marketing campaign to boost tourism to Red Sea (Hurghada)."
     },
     "details": {
+      "add-qrcode-to-pdf": "Developed a tool for adding QR codes to PDF documents, facilitating the integration of digital information into printed materials.",
       "corporate-website": "Developed a fully responsive, SEO-optimized corporate website.",
       "data-dashboard": "Designed a dashboard with real-time data of on-going matches, news, and players' statistics",
       "qwsain": "Developed a blog platform to share programming tutorials and articles, with a custom dashboard and roles for managing posts.",
@@ -150,18 +155,24 @@
     }
   },
   "projects": {
-    "title": "My Projects",
-    "subtitle": "A showcase of my work",
+    "title": "Our Projects",
+    "subtitle": "A showcase of our work",
     "viewProject": "View Project",
+    "noProjects": "No projects available.",
     "categories": {
       "all": "All",
       "webDevelopment": "Web Development",
       "design": "Design",
       "dataAnalytics": "Data Analytics",
       "marketing": "Marketing",
-      "software": "Software Development"
+      "software": "Software Development",
+      "mobile": "Mobile Development"
     },
     "details": {
+      "add-qrcode-to-pdf": {
+        "title": "Add QR Code to PDF",
+        "desc": "Tool for adding QR codes to PDF documents."
+      },
       "beirut-bites": {
         "title": "Beirut Bites",
         "desc": "Fully functioning website for Beirut's culinary scene."

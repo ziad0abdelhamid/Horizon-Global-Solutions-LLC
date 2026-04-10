@@ -99,7 +99,7 @@ export default function HeroWithNavbar() {
     <section className="relative font-sans">
       {/* ================= NAVBAR ================= */}
       <nav
-        className={`fixed top-0 left-0 right-4 z-40 px-4 sm:px-6 py-2 sm:py-4 transition-all duration-300 border-transparent
+        className={`fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 py-2 sm:py-4 transition-all duration-300 border-transparent
           ${scrolled || !isHome
             ? "bg-gradient-to-r from-white/95 to-white/90 backdrop-blur-xl shadow-lg border-b border-gray-300/40"
             : "bg-transparent"}`}

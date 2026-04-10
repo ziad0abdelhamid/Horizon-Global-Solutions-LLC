@@ -1,8 +1,8 @@
 export interface Project {
   id: string;
-  title: string;
+  title?: string;
   titleAr?: string;
-  desc: string;
+  desc?: string;
   descAr?: string;
   image: string;
   category: string[] | string;
@@ -15,9 +15,33 @@ export interface Project {
   duration?: string;
   challenges?: string;
   keyLearnings?: string;
+  hasPrivacyPolicy?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    id: "add-qrcode-to-pdf",
+    image: "/projects/add-qrcode-to-pdf/1.jpeg",
+    category: ["mobile"],
+    images: [
+      "/projects/add-qrcode-to-pdf/1.jpeg",
+      "/projects/add-qrcode-to-pdf/2.jpeg",
+      "/projects/add-qrcode-to-pdf/3.jpeg",
+      "/projects/add-qrcode-to-pdf/4.jpeg",
+      "/projects/add-qrcode-to-pdf/5.jpeg",
+      "/projects/add-qrcode-to-pdf/6.jpeg",
+      "/projects/add-qrcode-to-pdf/7.jpeg",
+      "/projects/add-qrcode-to-pdf/8.jpeg",
+    ],
+    technologies: ["React Native", "TypeScript", "Expo"],
+    role: "Software Developer",
+    duration: "1 month",
+    challenges:
+      "Creating a user-friendly interface for both customers and restaurant staff.",
+    keyLearnings:
+      "Enhanced skills in mobile development and Google Play deployment.",
+    hasPrivacyPolicy: true,
+  },
   {
     id: "beirut-bites",
     title: "Beirut Bites",

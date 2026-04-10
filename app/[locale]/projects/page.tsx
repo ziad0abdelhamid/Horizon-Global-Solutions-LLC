@@ -18,7 +18,8 @@ export default function ProjectsPage() {
     "design",
     "dataAnalytics",
     "marketing",
-    "software"
+    "software",
+    "mobile"
   ];
 
   const [selectedCategory, setSelectedCategory] = useState("all");
