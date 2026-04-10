@@ -41,6 +41,10 @@
     "videoEditing": {
       "title": "Video Editing",
       "description": "Professional video editing services, transforming raw footage into polished, engaging videos with seamless cuts, color correction, audio enhancement, and visual effects"
+    },
+    "erp": {
+      "title": "ERP Solutions",
+      "description": "Comprehensive ERP solutions to streamline your operations and enhance efficiency across all departments."
     }
   },
   "aboutPage": {
@@ -90,7 +94,8 @@
       "softwareProgramming": "Software Programming",
       "webDesign": "Web Design",
       "marketing": "Marketing",
-      "videoEditing": "Video Editing"
+      "videoEditing": "Video Editing",
+      "erp": "ERP Solutions"
     },
     "selectService": "Select a Service",
     "chooseService": "Choose your service",
@@ -131,7 +136,8 @@
       "beirut-bites": "Beirut Bites",
       "histology": "Histology",
       "em-russia": "EM Russia",
-      "red-sea-partners": "Red Sea Partners"
+      "red-sea-partners": "Red Sea Partners",
+      "erp": "ERP Solutions"
     },
     "desc": {
       "add-qrcode-to-pdf": "Tool for adding QR codes to PDF documents.",
@@ -141,7 +147,8 @@
       "beirut-bites": "Fully functioning website for Beirut's culinary scene.",
       "histology": "Interactive website for histology education.",
       "em-russia": "Marketing campaign for a tourism company.",
-      "red-sea-partners": "Comprehensive marketing campaign to boost tourism to Red Sea (Hurghada)."
+      "red-sea-partners": "Comprehensive marketing campaign to boost tourism to Red Sea (Hurghada).",
+      "erp": "Comprehensive ERP solutions to streamline your operations and enhance efficiency across all departments."
     },
     "details": {
       "add-qrcode-to-pdf": "Developed a tool for adding QR codes to PDF documents, facilitating the integration of digital information into printed materials.",
@@ -151,7 +158,8 @@
       "beirut-bites": "Developed a full working webapp that can manage restaurant orders, menu, and reservations.",
       "histology": "Created an interactive educational website to facilitate learning in histology, featuring quizzes and visual aids.",
       "em-russia": "Executed a comprehensive marketing campaign to boost tourism engagement for a travel company.",
-      "red-sea-partners": "Developed a comprehensive marketing campaign to boost tourism to Red Sea (Hurghada), including a responsive website, targeted social media ads, and engaging promotional videos."
+      "red-sea-partners": "Developed a comprehensive marketing campaign to boost tourism to Red Sea (Hurghada), including a responsive website, targeted social media ads, and engaging promotional videos.",
+      "erp": "Developed a comprehensive ERP system to integrate and optimize business processes, improving overall operational efficiency."
     }
   },
   "projects": {
@@ -200,6 +208,10 @@
       "red-sea-partners": {
         "title": "Red Sea Partners",
         "desc": "Marketing campaign for a tourism company."
+      },
+      "erp": {
+        "title": "ERP Solutions",
+        "desc": "Comprehensive ERP solutions to streamline your operations."
       }
     }
   },

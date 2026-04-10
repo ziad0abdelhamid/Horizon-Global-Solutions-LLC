@@ -10,6 +10,7 @@ export interface Project {
   details?: string;
   detailsAr?: string;
   images?: string[];
+  videos?: string[];
   technologies?: string[];
   role?: string;
   duration?: string;
@@ -267,5 +268,34 @@ export const projects: Project[] = [
       "Managing multiple marketing channels and coordinating with external agencies.",
     keyLearnings:
       "Gained experience in digital marketing strategies and cross-platform promotion.",
+  },
+  {
+    id: "erp",
+    title: "ERP Solutions",
+    titleAr: "حلول ERP",
+    desc: "Comprehensive ERP solutions to streamline your operations and enhance efficiency across all departments.",
+    descAr: "حلول ERP شاملة لتبسيط عملياتك وتعزيز الكفاءة عبر جميع الأقسام.",
+    image: "/projects/erp/erp1.png",
+    category: ["erp"],
+    details:
+      "Developed a comprehensive ERP system to integrate and optimize business processes, improving overall operational efficiency.",
+    detailsAr:
+      "تم تطوير نظام ERP شامل لدمج وتحسين العمليات التجارية، مما يحسن الكفاءة التشغيلية بشكل عام.",
+    link: "https://horizon-erp-website.vercel.app/",
+    images: [
+      "/projects/erp/erp1.png",
+      "/projects/erp/erp2.png",
+      "/projects/erp/erp3.png",
+      "/projects/erp/erp4.png",
+      "/projects/erp/erp5.png",
+      "/projects/erp/erp6.png",
+    ],
+    videos: ["/projects/erp/intro-video.mp4"],
+    technologies: ["React", "Node.js", "PostgreSQL", "Docker"],
+    role: "ERP Consultant & Full-Stack Developer",
+    duration: "6 months",
+    challenges: "Integrating legacy systems with modern ERP architecture.",
+    keyLearnings:
+      "Gained expertise in enterprise resource planning and system integration.",
   },
 ];

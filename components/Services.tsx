@@ -23,6 +23,8 @@ export default function Services() {
     { titleKey: 'webDesign.title', descKey: 'webDesign.description', icon: <Palette className="w-6 h-6" /> },
     { titleKey: 'marketing.title', descKey: 'marketing.description', icon: <Megaphone className="w-6 h-6" /> },
     { titleKey: 'videoEditing.title', descKey: 'videoEditing.description', icon: <Megaphone className="w-6 h-6" /> },
+    { titleKey: 'erp.title', descKey: 'erp.description', icon: <Briefcase className="w-6 h-6" /> },
+
   ];
 
   return (

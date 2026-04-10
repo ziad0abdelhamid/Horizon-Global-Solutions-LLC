@@ -150,8 +150,8 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
             </div>
           </motion.section>
 
-          {/* Additional Images Carousel */}
-          {project.images?.length && (
+          {/* Additional Images & Videos Carousel */}
+          {(project.images?.length || project.videos?.length) && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -198,35 +198,56 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                 onMouseUp={onMouseUpOrLeave}
                 onMouseLeave={onMouseUpOrLeave}
               >
-                {project.images.map((img, index) => (
-                  <motion.button
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.08 }}
-                    whileHover={{ y: -6 }}
-                    onClick={() => setSelectedImage(img)}
-                    className={`relative flex-shrink-0 rounded-xl overflow-hidden shadow-lg snap-center select-none transition-all cursor-pointer bg-gradient-to-br from-white/5 to-white/10
-                      ${index === centerIndex
-                        ? "w-56 h-80 ring-2 ring-[#D4AF37] ring-offset-2 ring-offset-[#0f0f1e] shadow-[#D4AF37]/50"
-                        : "w-56 h-80 hover:shadow-xl hover:scale-105"
-                      }
-                    `}
-                  >
-                    <Image
-                      src={img}
-                      alt={`${t(`title.${project.id}`)} screenshot ${index + 1}`}
-                      fill
-                      className="object-contain p-2"
-                    />
-                    <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all"></div>
-                  </motion.button>
-                ))}
+                {[...(project.images || []), ...(project.videos || [])].map((media, index) => {
+                  const isVideo = media.match(/\.(mp4|webm|ogg)$/i);
+                  return (
+                    <motion.button
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.08 }}
+                      whileHover={{ y: -6 }}
+                      onClick={() => setSelectedImage(media)}
+                      className={`relative flex-shrink-0 rounded-xl overflow-hidden shadow-lg snap-center select-none transition-all cursor-pointer bg-gradient-to-br from-white/5 to-white/10
+                        ${index === centerIndex
+                          ? "w-56 h-80 ring-2 ring-[#D4AF37] ring-offset-2 ring-offset-[#0f0f1e] shadow-[#D4AF37]/50"
+                          : "w-56 h-80 hover:shadow-xl hover:scale-105"
+                        }
+                      `}
+                    >
+                      {isVideo ? (
+                        <>
+                          <video
+                            src={media}
+                            className="w-full h-full object-contain p-2 bg-black/30"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-all">
+                            <div className="w-12 h-12 rounded-full bg-[#D4AF37] flex items-center justify-center">
+                              <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                              </svg>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <Image
+                            src={media}
+                            alt={`${t(`title.${project.id}`)} screenshot ${index + 1}`}
+                            fill
+                            className="object-contain p-2"
+                          />
+                          <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all"></div>
+                        </>
+                      )}
+                    </motion.button>
+                  );
+                })}
               </motion.section>
             </motion.div>
           )}
 
-          {/* Image Modal */}
+          {/* Image/Video Modal */}
           {isMounted && selectedImage && createPortal(
             <motion.div
               initial={{ opacity: 0 }}
@@ -250,13 +271,22 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                   ✕
                 </button>
                 <div className="relative w-full h-full p-4">
-                  <Image
-                    src={selectedImage}
-                    alt="Full size project screenshot"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
+                  {selectedImage.match(/\.(mp4|webm|ogg)$/i) ? (
+                    <video
+                      src={selectedImage}
+                      className="w-full h-full object-contain"
+                      controls
+                      autoPlay
+                    />
+                  ) : (
+                    <Image
+                      src={selectedImage}
+                      alt="Full size project screenshot"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  )}
                 </div>
               </motion.div>
             </motion.div>,

@@ -15,7 +15,8 @@ export default function ContactFormSplit() {
     { id: "softwareProgramming", label: t("services.softwareProgramming") },
     { id: "webDesign", label: t("services.webDesign") },
     { id: "marketing", label: t("services.marketing") },
-    { id: "videoEditing", label: t("services.videoEditing") }
+    { id: "videoEditing", label: t("services.videoEditing") },
+    { id: "erp", label: t("services.erp") }
   ];
 
   const [selectedService, setSelectedService] = useState("");

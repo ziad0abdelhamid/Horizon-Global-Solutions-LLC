@@ -41,6 +41,10 @@
     "videoEditing": {
       "title": "Videobearbeitung",
       "description": "Professionelle Videobearbeitung, die Rohmaterial in polierte, ansprechende Videos mit nahtlosen Schnitten, Farbkorrektur, Audioverbesserung und visuellen Effekten verwandelt."
+    },
+    "erp": {
+      "title": "ERP-Lösungen",
+      "description": "Umfassende ERP-Lösungen zur Optimierung Ihrer Geschäftsprozesse und Steigerung der Effizienz in allen Abteilungen."
     }
   },
   "aboutPage": {
@@ -90,7 +94,8 @@
       "softwareProgramming": "Softwareprogrammierung",
       "webDesign": "Webdesign",
       "marketing": "Marketing",
-      "videoEditing": "Videobearbeitung"
+      "videoEditing": "Videobearbeitung",
+      "erp": "ERP-Lösungen"
     },
     "selectService": "Dienst auswählen",
     "chooseService": "Wählen Sie Ihre Dienstleistung",
