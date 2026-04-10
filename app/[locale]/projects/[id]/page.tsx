@@ -10,6 +10,7 @@ import { useTranslations } from 'next-intl';
 import React, { use, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, ArrowUpRight, Zap, Target, Award, Code } from "lucide-react";
 import { useRef } from "react";
+import { createPortal } from "react-dom";
 
 export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -22,6 +23,11 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
   const scrollLeft = useRef(0);
   const [centerIndex, setCenterIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const updateCenterIndex = () => {
     if (!containerRef.current) return;
@@ -94,12 +100,22 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
             className="flex items-start justify-between gap-6 mb-12"
           >
             <div className="flex-1">
-              <Link
-                href="/projects"
-                className="inline-flex items-center gap-2 px-4 py-2 mb-8 text-[#D4AF37] font-semibold hover:text-yellow-300 transition-all bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg hover:border-[#D4AF37]/50 hover:bg-white/10"
-              >
-                ← {t("back")}
-              </Link>
+              <div className="flex justify-between items-center gap-3 mb-8 flex-wrap">
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-[#D4AF37] font-semibold hover:text-yellow-300 transition-all bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg hover:border-[#D4AF37]/50 hover:bg-white/10"
+                >
+                  ← {t("back")}
+                </Link>
+                {project.hasPrivacyPolicy && (
+                  <Link
+                    href={`/projects/${id}/privacy`}
+                    className="inline-flex items-center gap-2 px-4 py-2 text-[#D4AF37] font-semibold hover:text-yellow-300 transition-all bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg hover:border-[#D4AF37]/50 hover:bg-white/10"
+                  >
+                    {t("viewPrivacyPolicy")}
+                  </Link>
+                )}
+              </div>
               <div>
                 <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[#D4AF37] to-yellow-300 bg-clip-text text-transparent mb-4">
                   {t(`title.${project.id}`)}
@@ -116,22 +132,21 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
 
           {/* Main Image Section */}
           <motion.section
-            className="relative w-full rounded-2xl overflow-hidden shadow-2xl mb-16"
+            className="relative w-full rounded-2xl overflow-hidden shadow-2xl mb-16 bg-gradient-to-br from-white/5 to-white/10"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <div className="relative w-full h-72 md:h-96 lg:h-[500px]">
+            <div className="relative w-full h-72 md:h-96 lg:h-[500px] flex items-center justify-center">
               <Image
                 src={project.image || "/placeholder.png"}
                 alt={t(`title.${project.id}`)}
                 fill
-                className="object-cover"
+                className="object-contain p-2"
                 placeholder="blur"
                 blurDataURL="/placeholder.png"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             </div>
           </motion.section>
 
@@ -191,10 +206,10 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                     transition={{ delay: index * 0.08 }}
                     whileHover={{ y: -6 }}
                     onClick={() => setSelectedImage(img)}
-                    className={`relative flex-shrink-0 rounded-xl overflow-hidden shadow-lg snap-center select-none transition-all cursor-pointer
+                    className={`relative flex-shrink-0 rounded-xl overflow-hidden shadow-lg snap-center select-none transition-all cursor-pointer bg-gradient-to-br from-white/5 to-white/10
                       ${index === centerIndex
-                        ? "w-56 h-44 ring-2 ring-[#D4AF37] ring-offset-2 ring-offset-[#0f0f1e] shadow-[#D4AF37]/50"
-                        : "w-56 h-44 hover:shadow-xl hover:scale-105"
+                        ? "w-56 h-80 ring-2 ring-[#D4AF37] ring-offset-2 ring-offset-[#0f0f1e] shadow-[#D4AF37]/50"
+                        : "w-56 h-80 hover:shadow-xl hover:scale-105"
                       }
                     `}
                   >
@@ -202,7 +217,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
                       src={img}
                       alt={`${t(`title.${project.id}`)} screenshot ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className="object-contain p-2"
                     />
                     <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all"></div>
                   </motion.button>
@@ -212,38 +227,40 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
           )}
 
           {/* Image Modal */}
-          {selectedImage && (
+          {isMounted && selectedImage && createPortal(
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedImage(null)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/90 backdrop-blur-md z-[9999] flex items-center justify-center p-4"
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-4xl h-auto max-h-[90vh] rounded-2xl overflow-hidden border border-[#D4AF37]/30"
+                className="relative w-full max-w-6xl h-[90vh] rounded-2xl overflow-hidden border border-[#D4AF37]/30 bg-gradient-to-br from-white/5 to-white/10"
               >
                 <button
                   onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
+                  className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all cursor-pointer"
                   aria-label="Close"
                 >
                   ✕
                 </button>
-                <Image
-                  src={selectedImage}
-                  alt="Full size project screenshot"
-                  width={1200}
-                  height={800}
-                  className="w-full h-full object-contain"
-                  priority
-                />
+                <div className="relative w-full h-full p-4">
+                  <Image
+                    src={selectedImage}
+                    alt="Full size project screenshot"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
               </motion.div>
-            </motion.div>
+            </motion.div>,
+            document.body
           )}
 
           {/* Project Info Grid */}

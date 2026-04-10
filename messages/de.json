@@ -113,6 +113,8 @@
   },
   "projectsDetail": {
     "back": "Zurück zu den Projekten",
+    "backToProject": "Zurück zum Projekt",
+    "viewPrivacyPolicy": "Datenschutzerklärung anzeigen",
     "technologies": "Technologien",
     "role": "Rolle",
     "duration": "Dauer",
@@ -121,6 +123,7 @@
     "visitProject": "Projekt besuchen",
     "noDescription": "Keine Beschreibung verfügbar.",
     "title": {
+      "add-qrcode-to-pdf": "QR-Code zu PDF hinzufügen",
       "corporate-website": "Firmenwebsite",
       "data-dashboard": "Daten-Dashboard",
       "qwsain": "Qwsain",
@@ -129,6 +132,7 @@
       "em-russia": "EM Russland"
     },
     "desc": {
+      "add-qrcode-to-pdf": "Tool zum Hinzufügen von QR-Codes zu PDF-Dokumenten.",
       "corporate-website": "Maßgeschneiderte Website für ein Immobilienunternehmen",
       "data-dashboard": "Interaktives Analyse-Dashboard für eine Fußball-Daten-Website",
       "qwsain": "Blog-Website zum Lernen von Programmierung.",
@@ -137,6 +141,7 @@
       "em-russia": "Marketingkampagne für ein Tourismusunternehmen."
     },
     "details": {
+      "add-qrcode-to-pdf": "Entwicklung eines Tools zum Hinzufügen von QR-Codes zu PDF-Dokumenten, um die Integration digitaler Informationen in gedruckte Dokumente zu erleichtern.",
       "corporate-website": "Entwicklung einer vollständig responsiven, SEO-optimierten Unternehmenswebsite.",
       "data-dashboard": "Design eines Dashboards mit Echtzeitdaten laufender Spiele, Nachrichten und Spielerstatistiken.",
       "qwsain": "Entwicklung einer Blogplattform zum Teilen von Programmier-Tutorials und Artikeln mit benutzerdefiniertem Dashboard und Rollenverwaltung.",
@@ -146,8 +151,8 @@
     }
   },
   "projects": {
-    "title": "Meine Projekte",
-    "subtitle": "Eine Übersicht meiner Arbeiten",
+    "title": "Unsere Projekte",
+    "subtitle": "Eine Übersicht unserer Arbeiten",
     "viewProject": "Projekt ansehen",
     "categories": {
       "all": "Alle",
@@ -155,7 +160,8 @@
       "design": "Design",
       "dataAnalytics": "Datenanalyse",
       "marketing": "Marketing",
-      "software": "Softwareentwicklung"
+      "software": "Softwareentwicklung",
+      "mobile": "Mobile Entwicklung"
     },
     "details": {
       "beirut-bites": {
