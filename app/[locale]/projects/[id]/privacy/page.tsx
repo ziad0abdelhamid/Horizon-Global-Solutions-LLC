@@ -1,7 +1,7 @@
 "use client";
 
 import { use, useEffect } from "react";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { projects, Project } from "@/app/data/projects";
 import HeroWithNavbar from "@/components/Navbar";
 import { Link } from "@/i18n/routing";
@@ -61,7 +61,7 @@ export default function PrivacyPolicyPage({ params }: { params: Promise<{ id: st
             <section>
               <h3 className="text-xl font-semibold text-white mb-3">Data Storage</h3>
               <p className="leading-relaxed">
-                All documents and QR codes are processed and stored locally on your device. We do not maintain any cloud storage or backup of your files. You have complete control over your data and can delete files at any time through your device's file management system.
+                All documents and QR codes are processed and stored locally on your device. We do not maintain any cloud storage or backup of your files. You have complete control over your data and can delete files at any time through your device&apos;s file management system.
               </p>
             </section>
 
@@ -75,7 +75,7 @@ export default function PrivacyPolicyPage({ params }: { params: Promise<{ id: st
             <section>
               <h3 className="text-xl font-semibold text-white mb-3">Data Sharing</h3>
               <p className="leading-relaxed">
-                <strong className="text-[#D4AF37]">We do not share any data</strong> because we do not collect any data. When you choose to share a generated PDF through the app's sharing functionality (e.g., WhatsApp, email), you are directly sharing the file through your device's native sharing features. We are not involved in this process.
+                <strong className="text-[#D4AF37]">We do not share any data</strong> because we do not collect any data. When you choose to share a generated PDF through the app&apos;s sharing functionality (e.g., WhatsApp, email), you are directly sharing the file through your device&apos;s native sharing features. We are not involved in this process.
               </p>
             </section>
 
@@ -88,7 +88,7 @@ export default function PrivacyPolicyPage({ params }: { params: Promise<{ id: st
                 <li><strong className="text-white">Storage Access:</strong> To read PDF files from your device and save modified PDF files</li>
               </ul>
               <p className="leading-relaxed mt-4">
-                These permissions are used solely for the app's core functionality and are never used to collect or transmit data.
+                These permissions are used solely for the app&apos;s core functionality and are never used to collect or transmit data.
               </p>
             </section>
 
